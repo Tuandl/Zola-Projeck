@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerLibrary", "ServerLibrary\ServerLibrary.csproj", "{ACD8D292-D454-4680-AD72-A6B690990C73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHost", "ConsoleHost\ConsoleHost.csproj", "{563098FC-FEF7-466C-8466-359397C001F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZolaClient", "ZolaClient\ZolaClient.csproj", "{A18E9F73-5482-4227-AE5C-2DD01098B13D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACD8D292-D454-4680-AD72-A6B690990C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD8D292-D454-4680-AD72-A6B690990C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD8D292-D454-4680-AD72-A6B690990C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD8D292-D454-4680-AD72-A6B690990C73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563098FC-FEF7-466C-8466-359397C001F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563098FC-FEF7-466C-8466-359397C001F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563098FC-FEF7-466C-8466-359397C001F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563098FC-FEF7-466C-8466-359397C001F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,17 @@
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csprojResolveAssemblyReference.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Login.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\App.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient_MarkupCompile.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient_MarkupCompile.lref
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Login.baml
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.g.resources
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.Properties.Resources.resources
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csproj.GenerateResource.Cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csproj.CoreCompileInputs.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.exe.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Register.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Register.baml
