@@ -35,13 +35,14 @@ namespace ZolaClient
             string password = txtPassword.Password;
             string confirmPassword = txtConfirmPassword.Password;
             string name = txtName.Text;
-            if(password != confirmPassword)
+            if (password != confirmPassword)
             {
                 MessageBox.Show("Password confirm not match!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
-            } else
+            }
+            else
             {
                 App.Connect();
-                if(App.Proxy.Register(username, password, name) == true)
+                if (App.Proxy.Register(username, password, name) == true)
                 {
                     this.DialogResult = true;
                 }

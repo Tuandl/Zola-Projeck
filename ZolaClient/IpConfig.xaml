@@ -1,0 +1,24 @@
+﻿<Window x:Class="ZolaClient.IpConfig"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZolaClient"
+        mc:Ignorable="d"
+        Icon="/Resources/img/zola-icon.png" 
+        WindowStartupLocation="CenterScreen"
+        Title="IP Configuration" Height="149.485" Width="302.062"
+        ResizeMode="NoResize">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel>
+            <Label Content="Server _IP: " Target="{Binding ElementName=txtIP}"/>
+            <TextBox Name="txtIP" Width="179"/>
+        </WrapPanel>
+        <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+            <Button Name="btnOK" IsDefault="True" Content="OK"
+                    Width="50" Margin="0 0 5 0" Click="btnOK_Click"/>
+            <Button Name="btnCancel" IsCancel="True" Content="Cancel"
+                    Width="50" Margin="5 0 0 0"/>
+        </WrapPanel>
+    </StackPanel>
+</Window>

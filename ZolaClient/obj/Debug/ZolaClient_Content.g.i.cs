@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/img/register-now.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/img/zola-icon.png")]
 
 

@@ -44,9 +44,13 @@ namespace ZolaClient
             }
         }
 
+        /// <summary>
+        /// Disconnect Proxy with server
+        /// </summary>
         public static void Disconnect()
         {
             _proxy.Close();
+            _proxy = null;
         }
     }
 }

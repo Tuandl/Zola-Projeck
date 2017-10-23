@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZolaClient"
         mc:Ignorable="d"
-        Title="Register" Height="346.392" Width="300">
+        Icon="/Resources/img/zola-icon.png"
+        Title="Register" Height="398.969" Width="300"
+        WindowStartupLocation="CenterScreen">
     <StackPanel Margin="10" HorizontalAlignment="Center">
         <Image Source="/Resources/img/register-now.png" Height="70" 
                Width="100" Margin="30"/>
@@ -34,7 +36,7 @@
 
         <WrapPanel HorizontalAlignment="Center" Margin="0 20">
             <Button Name="btnback" Content="Back" Click="btnBack_Click"
-                    Width="60" Margin="5 0" IsCancel="True"/>
+                    Width="60" Margin="5 0" IsCancel="True" ClickMode="Hover"/>
             <Button Name="btnRegister" Content="Regitster" Click="btnRegister_Click"
                     Width="60" Margin="5 0" IsDefault="True"/>
         </WrapPanel>

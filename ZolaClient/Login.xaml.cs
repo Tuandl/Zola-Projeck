@@ -63,5 +63,15 @@ namespace ZolaClient
             }
             this.Show();
         }
+
+        private void ctmIPConfig_Click(object sender, RoutedEventArgs e)
+        {
+            IpConfig ipConfigDialog = new IpConfig();
+            if(ipConfigDialog.ShowDialog() == true)
+            {
+                App.IP = ipConfigDialog.NewIP;
+            }
+            MessageBox.Show("new ip: " + App.IP);
+        }
     }
 }
