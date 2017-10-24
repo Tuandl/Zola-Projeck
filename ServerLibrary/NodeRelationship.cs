@@ -10,10 +10,15 @@ namespace ServerLibrary
     {
         public User User { get; }
         public HashSet<NodeRelationship> Friends { get; }
+        public HashSet<NodeRelationship> SentPendingRequest { get; }
+        public HashSet<NodeRelationship> ReceivedPendingRequest { get; }
 
-        public NodeRelationship()
+        public NodeRelationship(User curUser)
         {
+            this.User = curUser;
             Friends = new HashSet<NodeRelationship>(new NodeRelationShipEqualityComparer());
+            SentPendingRequest = new HashSet<NodeRelationship>(new NodeRelationShipEqualityComparer());
+            ReceivedPendingRequest = new HashSet<NodeRelationship>(new NodeRelationShipEqualityComparer());
         }
     }
 
@@ -28,5 +33,10 @@ namespace ServerLibrary
         {
             return obj.User.Username.GetHashCode();
         }
+    }
+
+    public enum RelationshipType
+    {
+        Friend = 0, Pending = 1
     }
 }

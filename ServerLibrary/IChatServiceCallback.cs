@@ -12,5 +12,20 @@ namespace ServerLibrary
 
         [OperationContract(IsOneWay = true)]
         void FriendOnlineListChangeUnexpectedly();
+
+        [OperationContract(IsOneWay = false)]
+        bool ReceiveMessage(DataMessage message);
+
+        [OperationContract(IsOneWay = true)]
+        void FriendChangeAvatar(User friend);
+
+        [OperationContract(IsOneWay = true)]
+        void FriendIsWrittingMessage(User Friend);
+
+        [OperationContract(IsOneWay = true)]
+        void ReceiveMakeFriendRequest(User stranger);
+
+        [OperationContract(IsOneWay =  true)]
+        void GotANewFriend();
     }
 }
