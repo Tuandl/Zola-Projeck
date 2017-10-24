@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatService.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="IChatService.cs" />
     <Compile Include="IChatServiceCallback.cs" />
+    <Compile Include="NodeRelationship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

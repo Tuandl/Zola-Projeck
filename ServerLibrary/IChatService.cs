@@ -14,5 +14,17 @@ namespace ServerLibrary
 
         [OperationContract(IsOneWay = false, IsInitiating = true)]
         bool Login(string username, string password);
+
+        [OperationContract(IsOneWay = false)]
+        List<User> GetFriends(string username);
+
+        [OperationContract(IsOneWay = false)]
+        DataFile GetAvatarFile(string username);
+
+        [OperationContract(IsOneWay = false)]
+        bool IsUserHasAvatar(string username);
+
+        [OperationContract(IsOneWay = false)]
+        List<User> FindPeople(string username);
     }
 }

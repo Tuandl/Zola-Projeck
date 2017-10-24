@@ -31,6 +31,7 @@ namespace ZolaClient
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             NewIP = txtIP.Text;
+            this.DialogResult = true;
         }
     }
 }

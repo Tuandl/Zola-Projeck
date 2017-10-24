@@ -8,15 +8,15 @@
         Icon="/Resources/img/zola-icon.png"
         Title="Zola" Height="348.797" Width="331.357" 
         ResizeMode="CanMinimize">
-    <StackPanel Margin="10" HorizontalAlignment="Center">
-        <StackPanel.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="_IP config" Name="ctmIPConfig" Click="ctmIPConfig_Click"/>
-            </ContextMenu>
-        </StackPanel.ContextMenu>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="_IP config" Name="ctmIPConfig" Click="ctmIPConfig_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
 
-            <Image Source="/Resources/img/zola-logo.png" Height="70" Width="70" Margin="40"/>
-        <WrapPanel>
+    <StackPanel Margin="10" HorizontalAlignment="Center">
+        <Image Source="/Resources/img/zola-logo.png" Height="70" Width="70" Margin="40"/>
+        <WrapPanel> 
             <TextBlock Text="Username:" Margin="10 0"/>
             <TextBox Name="txtUsername" Width="150"/>
         </WrapPanel>

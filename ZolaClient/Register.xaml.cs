@@ -35,7 +35,21 @@ namespace ZolaClient
             string password = txtPassword.Password;
             string confirmPassword = txtConfirmPassword.Password;
             string name = txtName.Text;
-            if (password != confirmPassword)
+
+            //Validate
+            if(username.Length < 5)
+            {
+                MessageBox.Show("Username must have more than 5 chars");
+            }
+            else if(password.Length < 5)
+            {
+                MessageBox.Show("Password must have more than 5 chars");
+            }
+            else if(name.Length < 5)
+            {
+                MessageBox.Show("Name must have more than 5 chars");
+            }
+            else if (password != confirmPassword)
             {
                 MessageBox.Show("Password confirm not match!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
             }

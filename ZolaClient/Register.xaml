@@ -36,7 +36,7 @@
 
         <WrapPanel HorizontalAlignment="Center" Margin="0 20">
             <Button Name="btnback" Content="Back" Click="btnBack_Click"
-                    Width="60" Margin="5 0" IsCancel="True" ClickMode="Hover"/>
+                    Width="60" Margin="5 0" IsCancel="True"/>
             <Button Name="btnRegister" Content="Regitster" Click="btnRegister_Click"
                     Width="60" Margin="5 0" IsDefault="True"/>
         </WrapPanel>
