@@ -1,7 +1,6 @@
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\bin\Debug\ServerLibrary.dll.config
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\bin\Debug\ServerLibrary.dll
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\bin\Debug\ServerLibrary.pdb
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\obj\Debug\ServerLibrary.csprojResolveAssemblyReference.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\obj\Debug\ServerLibrary.csproj.CoreCompileInputs.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\obj\Debug\ServerLibrary.dll
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ServerLibrary\obj\Debug\ServerLibrary.pdb

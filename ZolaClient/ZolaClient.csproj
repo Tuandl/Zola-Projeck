@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CallbackObject.cs" />
     <Compile Include="IpConfig.xaml.cs">
       <DependentUpon>IpConfig.xaml</DependentUpon>
     </Compile>
@@ -105,12 +106,24 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Connected Services\ZolaService\ServerLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ZolaService\service.wsdl" />
     <None Include="Connected Services\ZolaService\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ZolaService\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ZolaService\ZolaClient.ZolaService.DataFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZolaService\ZolaClient.ZolaService.DataMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZolaService\ZolaClient.ZolaService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

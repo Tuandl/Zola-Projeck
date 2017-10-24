@@ -14,26 +14,26 @@ namespace ServerLibrary
     {
         #region Constants
 
-        private static readonly string AVATAR_LOCATION = @"Resources/Avatar/";
+        private static readonly string AVATAR_LOCATION = Environment.CurrentDirectory + @"\Resources\Avatar\";
 
         #endregion
 
         #region Variables
 
-        private string _strConnection;
+        private static string _strConnection;
 
-        object _synObj = new object();
-        object _synNotReceivedMessage = new object();
+        private static object _synObj = new object();
+        private static object _synNotReceivedMessage = new object();
 
-        Dictionary<User, IChatServiceCallback> _onlineUsers
+        private static Dictionary<User, IChatServiceCallback> _onlineUsers
             = new Dictionary<User, IChatServiceCallback>(new UserEqualityComparer());
 
-        List<User> _allUsers = new List<User>();
+        private static List<User> _allUsers = new List<User>();
 
-        Dictionary<User, NodeRelationship> _relationship =
+        private static Dictionary<User, NodeRelationship> _relationship =
             new Dictionary<User, NodeRelationship>(new UserEqualityComparer());
 
-        List<DataMessage> _notReceivedMessages = new List<DataMessage>();
+        private static List<DataMessage> _notReceivedMessages = new List<DataMessage>();
 
         #endregion
 
@@ -67,7 +67,7 @@ namespace ServerLibrary
         /// Create directory for storing avatar image
         /// Load unreceived messages
         /// </summary>
-        private void Init()
+        public static void Init()
         {
             //Init _allUsers
             String query = "SELECT username, name, gender " +
@@ -82,11 +82,14 @@ namespace ServerLibrary
                 {
                     User user = new User()
                     {
-                        IsMale = (bool)reader["gender"],
                         IsOnline = false,
                         Name = (string)reader["name"],
                         Username = (string)reader["username"]
                     };
+                    if(reader["gender"].ToString().Length > 0)
+                    {
+                        user.IsMale = (bool)reader["gender"];
+                    }
                     _allUsers.Add(user);
                     _relationship.Add(user, new NodeRelationship(user));
                 }
@@ -108,11 +111,17 @@ namespace ServerLibrary
                     int relationType = (int)reader["relation"];
                     if (relationType == (int)RelationshipType.Friend)
                     {
-                        MakeFriend(foo, bar);
+                        User fooUser = _allUsers.Find(x => x.Username == foo);
+                        User barUser = _allUsers.Find(x => x.Username == bar);
+                        _relationship[fooUser].Friends.Add(_relationship[barUser]);
+                        _relationship[barUser].Friends.Add(_relationship[fooUser]);
                     } 
                     else if(relationType == (int)RelationshipType.Pending)
                     {
-                        MakePendingRequest(foo, bar);
+                        User fooUser = _allUsers.Find(x => x.Username == foo);
+                        User barUser = _allUsers.Find(x => x.Username == bar);
+                        _relationship[fooUser].SentPendingRequest.Add(_relationship[barUser]);
+                        _relationship[barUser].ReceivedPendingRequest.Add(_relationship[fooUser]);
                     }
                 }
             }
@@ -138,7 +147,7 @@ namespace ServerLibrary
                 {
                     DataMessage msg = new DataMessage()
                     {
-                        Id = (int)reader["id"],
+                        Id = int.Parse(reader["id"].ToString()),
                         Message = (string)reader["message"],
                         Receiver = _allUsers.Find(x => x.Username == (string)reader["receiver"]),
                         Sender = _allUsers.Find(x => x.Username == (string)reader["sender"]),
@@ -151,20 +160,6 @@ namespace ServerLibrary
 
         /// <summary>
         /// Foo sent make friend request to bar
-        /// This function connect relationship between 2 user
-        /// whose username is foo and bar corresponse
-        /// </summary>
-        /// <param name="foo"></param>
-        /// <param name="bar"></param>
-        private void MakePendingRequest(string foo, string bar)
-        {
-            User fooUser = _allUsers.Find(x => x.Username == foo);
-            User barUser = _allUsers.Find(x => x.Username == bar);
-            MakePendingRequest(fooUser, barUser);
-        }
-
-        /// <summary>
-        /// Foo sent make friend request to bar
         /// This function connect relationship between fooUser and barUser
         /// </summary>
         /// <param name="fooUser"></param>
@@ -173,20 +168,6 @@ namespace ServerLibrary
         {
             _relationship[fooUser].SentPendingRequest.Add(_relationship[barUser]);
             _relationship[barUser].ReceivedPendingRequest.Add(_relationship[fooUser]);
-        }
-
-        /// <summary>
-        /// Make friend relationship between 2 users which
-        /// username is foo and bar.
-        /// </summary>
-        /// <param name="foo"></param>
-        /// <param name="bar"></param>
-        private void MakeFriend(string foo, string bar)
-        {
-            User fooUser = _allUsers.Find(x => x.Username == foo);
-            User barUser = _allUsers.Find(x => x.Username == bar);
-            _relationship[fooUser].Friends.Add(_relationship[barUser]);
-            _relationship[barUser].Friends.Add(_relationship[fooUser]);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="d78cdbc0-9661-40aa-a063-9614afe1a281" SourceId="1" SourceUrl="net.tcp://localhost:7996/Zola/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b03cd584-71b1-4d3d-a4fd-cc4fbcb29fa1" SourceId="1" SourceUrl="net.tcp://localhost:7996/Zola/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3cff9232-2341-467d-ac0e-517c5d3d8549" SourceId="1" SourceUrl="net.tcp://localhost:7996/Zola/mex" />
+    <MetadataFile FileName="ServerLibrary.xsd" MetadataType="Schema" ID="70542966-0b01-4792-b371-46362a9349f7" SourceId="1" SourceUrl="net.tcp://localhost:7996/Zola/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -20,6 +20,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServerLibrary" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IChatService_Register_InputMessage">
@@ -34,6 +35,102 @@
   <wsdl:message name="IChatService_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IChatService_GetFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriends" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetAvatarFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvatarFile" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetAvatarFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvatarFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_IsUserHasAvatar_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserHasAvatar" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_IsUserHasAvatar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserHasAvatarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FindStranger_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindStranger" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FindStranger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindStrangerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetUnreceivedMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreceivedMessages" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetUnreceivedMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreceivedMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdateInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateInformation" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdateInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdatePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdatePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdateAvatar_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAvatar" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_UpdateAvatar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAvatarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Writting_InputMessage">
+    <wsdl:part name="parameters" element="tns:Writting" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetPendingFriendRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingFriendRequests" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetPendingFriendRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingFriendRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_AcceptFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetSentFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSentFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetSentFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSentFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FriendOnline_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendOnline" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FriendOnlineListChangeUnexpectedly_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendOnlineListChangeUnexpectedly" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ReceiveMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ReceiveMessage_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FriendChangeAvatar_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendChangeAvatar" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_FriendIsWrittingMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendIsWrittingMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ReceiveMakeFriendRequest_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMakeFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GotANewFriend_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GotANewFriend" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IChatService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Register" message="tns:IChatService_Register_InputMessage" />
@@ -42,6 +139,80 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Login" message="tns:IChatService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/LoginResponse" message="tns:IChatService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetFriends" message="tns:IChatService_GetFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetFriendsResponse" message="tns:IChatService_GetFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAvatarFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetAvatarFile" message="tns:IChatService_GetAvatarFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetAvatarFileResponse" message="tns:IChatService_GetAvatarFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsUserHasAvatar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/IsUserHasAvatar" message="tns:IChatService_IsUserHasAvatar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/IsUserHasAvatarResponse" message="tns:IChatService_IsUserHasAvatar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FindStranger">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/FindStranger" message="tns:IChatService_FindStranger_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FindStrangerResponse" message="tns:IChatService_FindStranger_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetUnreceivedMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetUnreceivedMessages" message="tns:IChatService_GetUnreceivedMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetUnreceivedMessagesResponse" message="tns:IChatService_GetUnreceivedMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/UpdateInformation" message="tns:IChatService_UpdateInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UpdateInformationResponse" message="tns:IChatService_UpdateInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/UpdatePassword" message="tns:IChatService_UpdatePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UpdatePasswordResponse" message="tns:IChatService_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateAvatar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/UpdateAvatar" message="tns:IChatService_UpdateAvatar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UpdateAvatarResponse" message="tns:IChatService_UpdateAvatar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Writting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Writting" message="tns:IChatService_Writting_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendFriendRequest" message="tns:IChatService_SendFriendRequest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPendingFriendRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetPendingFriendRequests" message="tns:IChatService_GetPendingFriendRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetPendingFriendRequestsResponse" message="tns:IChatService_GetPendingFriendRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AcceptFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/AcceptFriendRequest" message="tns:IChatService_AcceptFriendRequest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetSentFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetSentFriendRequest" message="tns:IChatService_GetSentFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetSentFriendRequestResponse" message="tns:IChatService_GetSentFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendOnline">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendOnline" message="tns:IChatService_FriendOnline_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendOnlineListChangeUnexpectedly">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendOnlineListChangeUnexpectedly" message="tns:IChatService_FriendOnlineListChangeUnexpectedly_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ReceiveMessage" message="tns:IChatService_ReceiveMessage_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/ReceiveMessageResponse" message="tns:IChatService_ReceiveMessage_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendChangeAvatar">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendChangeAvatar" message="tns:IChatService_FriendChangeAvatar_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendIsWrittingMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendIsWrittingMessage" message="tns:IChatService_FriendIsWrittingMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMakeFriendRequest">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ReceiveMakeFriendRequest" message="tns:IChatService_ReceiveMakeFriendRequest_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GotANewFriend">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GotANewFriend" message="tns:IChatService_GotANewFriend_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
@@ -62,6 +233,165 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriends">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvatarFile">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetAvatarFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserHasAvatar">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/IsUserHasAvatar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindStranger">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FindStranger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreceivedMessages">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetUnreceivedMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInformation">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/UpdateInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAvatar">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/UpdateAvatar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Writting">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/Writting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingFriendRequests">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetPendingFriendRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/AcceptFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetSentFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetSentFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendOnline">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FriendOnline" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendOnlineListChangeUnexpectedly">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FriendOnlineListChangeUnexpectedly" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/ReceiveMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendChangeAvatar">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FriendChangeAvatar" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendIsWrittingMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FriendIsWrittingMessage" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveMakeFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/ReceiveMakeFriendRequest" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GotANewFriend">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GotANewFriend" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

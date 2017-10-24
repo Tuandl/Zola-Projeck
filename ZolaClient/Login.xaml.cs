@@ -29,7 +29,7 @@ namespace ZolaClient
         {
             try
             {
-                App.Connect();
+                App.Connect(new CallbackObject());
                 string username = txtUsername.Text;
                 string password = txtPassword.Password;
                 if (App.Proxy.Login(username, password))

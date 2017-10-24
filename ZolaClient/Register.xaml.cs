@@ -37,17 +37,17 @@ namespace ZolaClient
             string name = txtName.Text;
 
             //Validate
-            if(username.Length < 5)
+            if (username.Length <= 2)
             {
-                MessageBox.Show("Username must have more than 5 chars");
+                MessageBox.Show("Username must have more than 2 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
             }
-            else if(password.Length < 5)
+            else if (password.Length < 5)
             {
-                MessageBox.Show("Password must have more than 5 chars");
+                MessageBox.Show("Password must have more than 4 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
             }
-            else if(name.Length < 5)
+            else if (name.Length < 1)
             {
-                MessageBox.Show("Name must have more than 5 chars");
+                MessageBox.Show("Please input name", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
             }
             else if (password != confirmPassword)
             {
@@ -55,16 +55,34 @@ namespace ZolaClient
             }
             else
             {
-                App.Connect();
-                if (App.Proxy.Register(username, password, name) == true)
+                App.Connect(new CallbackObject());
+                try
                 {
-                    this.DialogResult = true;
+                    if (App.Proxy.Register(username, password, name) == true)
+                    {
+                        this.DialogResult = true;
+                    }
+                    else
+                    {
+                        this.DialogResult = false;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.DialogResult = false;
+                    MessageBox.Show(ex.Message);
                 }
-                App.Disconnect();
+                finally
+                {
+                    try
+                    {
+                        App.Disconnect();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
             }
         }
     }

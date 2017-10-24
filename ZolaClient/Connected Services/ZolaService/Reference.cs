@@ -9,10 +9,275 @@
 //------------------------------------------------------------------------------
 
 namespace ZolaClient.ZolaService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/ServerLibrary")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsMaleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsOnlineField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsMale {
+            get {
+                return this.IsMaleField;
+            }
+            set {
+                if ((this.IsMaleField.Equals(value) != true)) {
+                    this.IsMaleField = value;
+                    this.RaisePropertyChanged("IsMale");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsOnline {
+            get {
+                return this.IsOnlineField;
+            }
+            set {
+                if ((this.IsOnlineField.Equals(value) != true)) {
+                    this.IsOnlineField = value;
+                    this.RaisePropertyChanged("IsOnline");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataFile", Namespace="http://schemas.datacontract.org/2004/07/ServerLibrary")]
+    [System.SerializableAttribute()]
+    public partial class DataFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataMessage", Namespace="http://schemas.datacontract.org/2004/07/ServerLibrary")]
+    [System.SerializableAttribute()]
+    public partial class DataMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ZolaClient.ZolaService.User ReceiverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ZolaClient.ZolaService.User SenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SentTimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ZolaClient.ZolaService.User Receiver {
+            get {
+                return this.ReceiverField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReceiverField, value) != true)) {
+                    this.ReceiverField = value;
+                    this.RaisePropertyChanged("Receiver");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ZolaClient.ZolaService.User Sender {
+            get {
+                return this.SenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime SentTime {
+            get {
+                return this.SentTimeField;
+            }
+            set {
+                if ((this.SentTimeField.Equals(value) != true)) {
+                    this.SentTimeField = value;
+                    this.RaisePropertyChanged("SentTime");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ZolaService.IChatService", SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ZolaService.IChatService", CallbackContract=typeof(ZolaClient.ZolaService.IChatServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Register", ReplyAction="http://tempuri.org/IChatService/RegisterResponse")]
@@ -30,6 +295,178 @@ namespace ZolaClient.ZolaService {
         System.IAsyncResult BeginLogin(string username, string password, System.AsyncCallback callback, object asyncState);
         
         bool EndLogin(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetFriends", ReplyAction="http://tempuri.org/IChatService/GetFriendsResponse")]
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> GetFriends(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/GetFriends", ReplyAction="http://tempuri.org/IChatService/GetFriendsResponse")]
+        System.IAsyncResult BeginGetFriends(string username, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetFriends(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetAvatarFile", ReplyAction="http://tempuri.org/IChatService/GetAvatarFileResponse")]
+        ZolaClient.ZolaService.DataFile GetAvatarFile(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/GetAvatarFile", ReplyAction="http://tempuri.org/IChatService/GetAvatarFileResponse")]
+        System.IAsyncResult BeginGetAvatarFile(string username, System.AsyncCallback callback, object asyncState);
+        
+        ZolaClient.ZolaService.DataFile EndGetAvatarFile(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/IsUserHasAvatar", ReplyAction="http://tempuri.org/IChatService/IsUserHasAvatarResponse")]
+        bool IsUserHasAvatar(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/IsUserHasAvatar", ReplyAction="http://tempuri.org/IChatService/IsUserHasAvatarResponse")]
+        System.IAsyncResult BeginIsUserHasAvatar(string username, System.AsyncCallback callback, object asyncState);
+        
+        bool EndIsUserHasAvatar(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/FindStranger", ReplyAction="http://tempuri.org/IChatService/FindStrangerResponse")]
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> FindStranger(string curUsername, string strangerUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/FindStranger", ReplyAction="http://tempuri.org/IChatService/FindStrangerResponse")]
+        System.IAsyncResult BeginFindStranger(string curUsername, string strangerUsername, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> EndFindStranger(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
+        void SendMessage(ZolaClient.ZolaService.DataMessage message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/SendMessage")]
+        System.IAsyncResult BeginSendMessage(ZolaClient.ZolaService.DataMessage message, System.AsyncCallback callback, object asyncState);
+        
+        void EndSendMessage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetUnreceivedMessages", ReplyAction="http://tempuri.org/IChatService/GetUnreceivedMessagesResponse")]
+        System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> GetUnreceivedMessages(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/GetUnreceivedMessages", ReplyAction="http://tempuri.org/IChatService/GetUnreceivedMessagesResponse")]
+        System.IAsyncResult BeginGetUnreceivedMessages(string username, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> EndGetUnreceivedMessages(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/UpdateInformation", ReplyAction="http://tempuri.org/IChatService/UpdateInformationResponse")]
+        bool UpdateInformation(ZolaClient.ZolaService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/UpdateInformation", ReplyAction="http://tempuri.org/IChatService/UpdateInformationResponse")]
+        System.IAsyncResult BeginUpdateInformation(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState);
+        
+        bool EndUpdateInformation(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/UpdatePassword", ReplyAction="http://tempuri.org/IChatService/UpdatePasswordResponse")]
+        bool UpdatePassword(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/UpdatePassword", ReplyAction="http://tempuri.org/IChatService/UpdatePasswordResponse")]
+        System.IAsyncResult BeginUpdatePassword(string username, string password, System.AsyncCallback callback, object asyncState);
+        
+        bool EndUpdatePassword(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/UpdateAvatar", ReplyAction="http://tempuri.org/IChatService/UpdateAvatarResponse")]
+        bool UpdateAvatar(string username, ZolaClient.ZolaService.DataFile newAvatar);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/UpdateAvatar", ReplyAction="http://tempuri.org/IChatService/UpdateAvatarResponse")]
+        System.IAsyncResult BeginUpdateAvatar(string username, ZolaClient.ZolaService.DataFile newAvatar, System.AsyncCallback callback, object asyncState);
+        
+        bool EndUpdateAvatar(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Writting")]
+        void Writting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/Writting")]
+        System.IAsyncResult BeginWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter, System.AsyncCallback callback, object asyncState);
+        
+        void EndWritting(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendFriendRequest")]
+        void SendFriendRequest(string sender, string stranger);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/SendFriendRequest")]
+        System.IAsyncResult BeginSendFriendRequest(string sender, string stranger, System.AsyncCallback callback, object asyncState);
+        
+        void EndSendFriendRequest(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetPendingFriendRequests", ReplyAction="http://tempuri.org/IChatService/GetPendingFriendRequestsResponse")]
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> GetPendingFriendRequests(ZolaClient.ZolaService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/GetPendingFriendRequests", ReplyAction="http://tempuri.org/IChatService/GetPendingFriendRequestsResponse")]
+        System.IAsyncResult BeginGetPendingFriendRequests(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetPendingFriendRequests(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/AcceptFriendRequest")]
+        void AcceptFriendRequest(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/AcceptFriendRequest")]
+        System.IAsyncResult BeginAcceptFriendRequest(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar, System.AsyncCallback callback, object asyncState);
+        
+        void EndAcceptFriendRequest(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetSentFriendRequest", ReplyAction="http://tempuri.org/IChatService/GetSentFriendRequestResponse")]
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> GetSentFriendRequest(ZolaClient.ZolaService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/GetSentFriendRequest", ReplyAction="http://tempuri.org/IChatService/GetSentFriendRequestResponse")]
+        System.IAsyncResult BeginGetSentFriendRequest(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetSentFriendRequest(System.IAsyncResult result);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IChatServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/FriendOnline")]
+        void FriendOnline(ZolaClient.ZolaService.User onlineFriend);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/FriendOnline")]
+        System.IAsyncResult BeginFriendOnline(ZolaClient.ZolaService.User onlineFriend, System.AsyncCallback callback, object asyncState);
+        
+        void EndFriendOnline(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/FriendOnlineListChangeUnexpectedly")]
+        void FriendOnlineListChangeUnexpectedly();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/FriendOnlineListChangeUnexpectedly")]
+        System.IAsyncResult BeginFriendOnlineListChangeUnexpectedly(System.AsyncCallback callback, object asyncState);
+        
+        void EndFriendOnlineListChangeUnexpectedly(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ReceiveMessage", ReplyAction="http://tempuri.org/IChatService/ReceiveMessageResponse")]
+        bool ReceiveMessage(ZolaClient.ZolaService.DataMessage message);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/ReceiveMessage", ReplyAction="http://tempuri.org/IChatService/ReceiveMessageResponse")]
+        System.IAsyncResult BeginReceiveMessage(ZolaClient.ZolaService.DataMessage message, System.AsyncCallback callback, object asyncState);
+        
+        bool EndReceiveMessage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/FriendChangeAvatar")]
+        void FriendChangeAvatar(ZolaClient.ZolaService.User friend);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/FriendChangeAvatar")]
+        System.IAsyncResult BeginFriendChangeAvatar(ZolaClient.ZolaService.User friend, System.AsyncCallback callback, object asyncState);
+        
+        void EndFriendChangeAvatar(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/FriendIsWrittingMessage")]
+        void FriendIsWrittingMessage(ZolaClient.ZolaService.User Friend);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/FriendIsWrittingMessage")]
+        System.IAsyncResult BeginFriendIsWrittingMessage(ZolaClient.ZolaService.User Friend, System.AsyncCallback callback, object asyncState);
+        
+        void EndFriendIsWrittingMessage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/ReceiveMakeFriendRequest")]
+        void ReceiveMakeFriendRequest(ZolaClient.ZolaService.User stranger);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/ReceiveMakeFriendRequest")]
+        System.IAsyncResult BeginReceiveMakeFriendRequest(ZolaClient.ZolaService.User stranger, System.AsyncCallback callback, object asyncState);
+        
+        void EndReceiveMakeFriendRequest(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/GotANewFriend")]
+        void GotANewFriend();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/GotANewFriend")]
+        System.IAsyncResult BeginGotANewFriend(System.AsyncCallback callback, object asyncState);
+        
+        void EndGotANewFriend(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -76,7 +513,197 @@ namespace ZolaClient.ZolaService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ChatServiceClient : System.ServiceModel.ClientBase<ZolaClient.ZolaService.IChatService>, ZolaClient.ZolaService.IChatService {
+    public partial class GetFriendsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetFriendsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<ZolaClient.ZolaService.User>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAvatarFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAvatarFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public ZolaClient.ZolaService.DataFile Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((ZolaClient.ZolaService.DataFile)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class IsUserHasAvatarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public IsUserHasAvatarCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FindStrangerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public FindStrangerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<ZolaClient.ZolaService.User>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetUnreceivedMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetUnreceivedMessagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateInformationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateInformationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdatePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdatePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateAvatarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateAvatarCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetPendingFriendRequestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetPendingFriendRequestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<ZolaClient.ZolaService.User>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSentFriendRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSentFriendRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<ZolaClient.ZolaService.User>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ChatServiceClient : System.ServiceModel.DuplexClientBase<ZolaClient.ZolaService.IChatService>, ZolaClient.ZolaService.IChatService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
         
@@ -90,28 +717,141 @@ namespace ZolaClient.ZolaService {
         
         private System.Threading.SendOrPostCallback onLoginCompletedDelegate;
         
-        public ChatServiceClient() {
+        private BeginOperationDelegate onBeginGetFriendsDelegate;
+        
+        private EndOperationDelegate onEndGetFriendsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetFriendsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAvatarFileDelegate;
+        
+        private EndOperationDelegate onEndGetAvatarFileDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAvatarFileCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginIsUserHasAvatarDelegate;
+        
+        private EndOperationDelegate onEndIsUserHasAvatarDelegate;
+        
+        private System.Threading.SendOrPostCallback onIsUserHasAvatarCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginFindStrangerDelegate;
+        
+        private EndOperationDelegate onEndFindStrangerDelegate;
+        
+        private System.Threading.SendOrPostCallback onFindStrangerCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendMessageDelegate;
+        
+        private EndOperationDelegate onEndSendMessageDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendMessageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetUnreceivedMessagesDelegate;
+        
+        private EndOperationDelegate onEndGetUnreceivedMessagesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetUnreceivedMessagesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateInformationDelegate;
+        
+        private EndOperationDelegate onEndUpdateInformationDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateInformationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdatePasswordDelegate;
+        
+        private EndOperationDelegate onEndUpdatePasswordDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdatePasswordCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateAvatarDelegate;
+        
+        private EndOperationDelegate onEndUpdateAvatarDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateAvatarCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginWrittingDelegate;
+        
+        private EndOperationDelegate onEndWrittingDelegate;
+        
+        private System.Threading.SendOrPostCallback onWrittingCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendFriendRequestDelegate;
+        
+        private EndOperationDelegate onEndSendFriendRequestDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendFriendRequestCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetPendingFriendRequestsDelegate;
+        
+        private EndOperationDelegate onEndGetPendingFriendRequestsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetPendingFriendRequestsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAcceptFriendRequestDelegate;
+        
+        private EndOperationDelegate onEndAcceptFriendRequestDelegate;
+        
+        private System.Threading.SendOrPostCallback onAcceptFriendRequestCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSentFriendRequestDelegate;
+        
+        private EndOperationDelegate onEndGetSentFriendRequestDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSentFriendRequestCompletedDelegate;
+        
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ChatServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public event System.EventHandler<RegisterCompletedEventArgs> RegisterCompleted;
         
         public event System.EventHandler<LoginCompletedEventArgs> LoginCompleted;
+        
+        public event System.EventHandler<GetFriendsCompletedEventArgs> GetFriendsCompleted;
+        
+        public event System.EventHandler<GetAvatarFileCompletedEventArgs> GetAvatarFileCompleted;
+        
+        public event System.EventHandler<IsUserHasAvatarCompletedEventArgs> IsUserHasAvatarCompleted;
+        
+        public event System.EventHandler<FindStrangerCompletedEventArgs> FindStrangerCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendMessageCompleted;
+        
+        public event System.EventHandler<GetUnreceivedMessagesCompletedEventArgs> GetUnreceivedMessagesCompleted;
+        
+        public event System.EventHandler<UpdateInformationCompletedEventArgs> UpdateInformationCompleted;
+        
+        public event System.EventHandler<UpdatePasswordCompletedEventArgs> UpdatePasswordCompleted;
+        
+        public event System.EventHandler<UpdateAvatarCompletedEventArgs> UpdateAvatarCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> WrittingCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendFriendRequestCompleted;
+        
+        public event System.EventHandler<GetPendingFriendRequestsCompletedEventArgs> GetPendingFriendRequestsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AcceptFriendRequestCompleted;
+        
+        public event System.EventHandler<GetSentFriendRequestCompletedEventArgs> GetSentFriendRequestCompleted;
         
         public bool Register(string username, string password, string name) {
             return base.Channel.Register(username, password, name);
@@ -217,6 +957,714 @@ namespace ZolaClient.ZolaService {
             base.InvokeAsync(this.onBeginLoginDelegate, new object[] {
                         username,
                         password}, this.onEndLoginDelegate, this.onLoginCompletedDelegate, userState);
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> GetFriends(string username) {
+            return base.Channel.GetFriends(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetFriends(string username, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetFriends(username, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetFriends(System.IAsyncResult result) {
+            return base.Channel.EndGetFriends(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetFriends(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            return this.BeginGetFriends(username, callback, asyncState);
+        }
+        
+        private object[] OnEndGetFriends(System.IAsyncResult result) {
+            System.Collections.Generic.List<ZolaClient.ZolaService.User> retVal = this.EndGetFriends(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetFriendsCompleted(object state) {
+            if ((this.GetFriendsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetFriendsCompleted(this, new GetFriendsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetFriendsAsync(string username) {
+            this.GetFriendsAsync(username, null);
+        }
+        
+        public void GetFriendsAsync(string username, object userState) {
+            if ((this.onBeginGetFriendsDelegate == null)) {
+                this.onBeginGetFriendsDelegate = new BeginOperationDelegate(this.OnBeginGetFriends);
+            }
+            if ((this.onEndGetFriendsDelegate == null)) {
+                this.onEndGetFriendsDelegate = new EndOperationDelegate(this.OnEndGetFriends);
+            }
+            if ((this.onGetFriendsCompletedDelegate == null)) {
+                this.onGetFriendsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetFriendsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetFriendsDelegate, new object[] {
+                        username}, this.onEndGetFriendsDelegate, this.onGetFriendsCompletedDelegate, userState);
+        }
+        
+        public ZolaClient.ZolaService.DataFile GetAvatarFile(string username) {
+            return base.Channel.GetAvatarFile(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAvatarFile(string username, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAvatarFile(username, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public ZolaClient.ZolaService.DataFile EndGetAvatarFile(System.IAsyncResult result) {
+            return base.Channel.EndGetAvatarFile(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAvatarFile(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            return this.BeginGetAvatarFile(username, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAvatarFile(System.IAsyncResult result) {
+            ZolaClient.ZolaService.DataFile retVal = this.EndGetAvatarFile(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAvatarFileCompleted(object state) {
+            if ((this.GetAvatarFileCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAvatarFileCompleted(this, new GetAvatarFileCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAvatarFileAsync(string username) {
+            this.GetAvatarFileAsync(username, null);
+        }
+        
+        public void GetAvatarFileAsync(string username, object userState) {
+            if ((this.onBeginGetAvatarFileDelegate == null)) {
+                this.onBeginGetAvatarFileDelegate = new BeginOperationDelegate(this.OnBeginGetAvatarFile);
+            }
+            if ((this.onEndGetAvatarFileDelegate == null)) {
+                this.onEndGetAvatarFileDelegate = new EndOperationDelegate(this.OnEndGetAvatarFile);
+            }
+            if ((this.onGetAvatarFileCompletedDelegate == null)) {
+                this.onGetAvatarFileCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAvatarFileCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAvatarFileDelegate, new object[] {
+                        username}, this.onEndGetAvatarFileDelegate, this.onGetAvatarFileCompletedDelegate, userState);
+        }
+        
+        public bool IsUserHasAvatar(string username) {
+            return base.Channel.IsUserHasAvatar(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginIsUserHasAvatar(string username, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginIsUserHasAvatar(username, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndIsUserHasAvatar(System.IAsyncResult result) {
+            return base.Channel.EndIsUserHasAvatar(result);
+        }
+        
+        private System.IAsyncResult OnBeginIsUserHasAvatar(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            return this.BeginIsUserHasAvatar(username, callback, asyncState);
+        }
+        
+        private object[] OnEndIsUserHasAvatar(System.IAsyncResult result) {
+            bool retVal = this.EndIsUserHasAvatar(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnIsUserHasAvatarCompleted(object state) {
+            if ((this.IsUserHasAvatarCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.IsUserHasAvatarCompleted(this, new IsUserHasAvatarCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void IsUserHasAvatarAsync(string username) {
+            this.IsUserHasAvatarAsync(username, null);
+        }
+        
+        public void IsUserHasAvatarAsync(string username, object userState) {
+            if ((this.onBeginIsUserHasAvatarDelegate == null)) {
+                this.onBeginIsUserHasAvatarDelegate = new BeginOperationDelegate(this.OnBeginIsUserHasAvatar);
+            }
+            if ((this.onEndIsUserHasAvatarDelegate == null)) {
+                this.onEndIsUserHasAvatarDelegate = new EndOperationDelegate(this.OnEndIsUserHasAvatar);
+            }
+            if ((this.onIsUserHasAvatarCompletedDelegate == null)) {
+                this.onIsUserHasAvatarCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnIsUserHasAvatarCompleted);
+            }
+            base.InvokeAsync(this.onBeginIsUserHasAvatarDelegate, new object[] {
+                        username}, this.onEndIsUserHasAvatarDelegate, this.onIsUserHasAvatarCompletedDelegate, userState);
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> FindStranger(string curUsername, string strangerUsername) {
+            return base.Channel.FindStranger(curUsername, strangerUsername);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginFindStranger(string curUsername, string strangerUsername, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginFindStranger(curUsername, strangerUsername, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> EndFindStranger(System.IAsyncResult result) {
+            return base.Channel.EndFindStranger(result);
+        }
+        
+        private System.IAsyncResult OnBeginFindStranger(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string curUsername = ((string)(inValues[0]));
+            string strangerUsername = ((string)(inValues[1]));
+            return this.BeginFindStranger(curUsername, strangerUsername, callback, asyncState);
+        }
+        
+        private object[] OnEndFindStranger(System.IAsyncResult result) {
+            System.Collections.Generic.List<ZolaClient.ZolaService.User> retVal = this.EndFindStranger(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnFindStrangerCompleted(object state) {
+            if ((this.FindStrangerCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.FindStrangerCompleted(this, new FindStrangerCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void FindStrangerAsync(string curUsername, string strangerUsername) {
+            this.FindStrangerAsync(curUsername, strangerUsername, null);
+        }
+        
+        public void FindStrangerAsync(string curUsername, string strangerUsername, object userState) {
+            if ((this.onBeginFindStrangerDelegate == null)) {
+                this.onBeginFindStrangerDelegate = new BeginOperationDelegate(this.OnBeginFindStranger);
+            }
+            if ((this.onEndFindStrangerDelegate == null)) {
+                this.onEndFindStrangerDelegate = new EndOperationDelegate(this.OnEndFindStranger);
+            }
+            if ((this.onFindStrangerCompletedDelegate == null)) {
+                this.onFindStrangerCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnFindStrangerCompleted);
+            }
+            base.InvokeAsync(this.onBeginFindStrangerDelegate, new object[] {
+                        curUsername,
+                        strangerUsername}, this.onEndFindStrangerDelegate, this.onFindStrangerCompletedDelegate, userState);
+        }
+        
+        public void SendMessage(ZolaClient.ZolaService.DataMessage message) {
+            base.Channel.SendMessage(message);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendMessage(ZolaClient.ZolaService.DataMessage message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessage(message, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndSendMessage(System.IAsyncResult result) {
+            base.Channel.EndSendMessage(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.DataMessage message = ((ZolaClient.ZolaService.DataMessage)(inValues[0]));
+            return this.BeginSendMessage(message, callback, asyncState);
+        }
+        
+        private object[] OnEndSendMessage(System.IAsyncResult result) {
+            this.EndSendMessage(result);
+            return null;
+        }
+        
+        private void OnSendMessageCompleted(object state) {
+            if ((this.SendMessageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendMessageAsync(ZolaClient.ZolaService.DataMessage message) {
+            this.SendMessageAsync(message, null);
+        }
+        
+        public void SendMessageAsync(ZolaClient.ZolaService.DataMessage message, object userState) {
+            if ((this.onBeginSendMessageDelegate == null)) {
+                this.onBeginSendMessageDelegate = new BeginOperationDelegate(this.OnBeginSendMessage);
+            }
+            if ((this.onEndSendMessageDelegate == null)) {
+                this.onEndSendMessageDelegate = new EndOperationDelegate(this.OnEndSendMessage);
+            }
+            if ((this.onSendMessageCompletedDelegate == null)) {
+                this.onSendMessageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendMessageDelegate, new object[] {
+                        message}, this.onEndSendMessageDelegate, this.onSendMessageCompletedDelegate, userState);
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> GetUnreceivedMessages(string username) {
+            return base.Channel.GetUnreceivedMessages(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetUnreceivedMessages(string username, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUnreceivedMessages(username, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> EndGetUnreceivedMessages(System.IAsyncResult result) {
+            return base.Channel.EndGetUnreceivedMessages(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetUnreceivedMessages(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            return this.BeginGetUnreceivedMessages(username, callback, asyncState);
+        }
+        
+        private object[] OnEndGetUnreceivedMessages(System.IAsyncResult result) {
+            System.Collections.Generic.List<ZolaClient.ZolaService.DataMessage> retVal = this.EndGetUnreceivedMessages(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetUnreceivedMessagesCompleted(object state) {
+            if ((this.GetUnreceivedMessagesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetUnreceivedMessagesCompleted(this, new GetUnreceivedMessagesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetUnreceivedMessagesAsync(string username) {
+            this.GetUnreceivedMessagesAsync(username, null);
+        }
+        
+        public void GetUnreceivedMessagesAsync(string username, object userState) {
+            if ((this.onBeginGetUnreceivedMessagesDelegate == null)) {
+                this.onBeginGetUnreceivedMessagesDelegate = new BeginOperationDelegate(this.OnBeginGetUnreceivedMessages);
+            }
+            if ((this.onEndGetUnreceivedMessagesDelegate == null)) {
+                this.onEndGetUnreceivedMessagesDelegate = new EndOperationDelegate(this.OnEndGetUnreceivedMessages);
+            }
+            if ((this.onGetUnreceivedMessagesCompletedDelegate == null)) {
+                this.onGetUnreceivedMessagesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUnreceivedMessagesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetUnreceivedMessagesDelegate, new object[] {
+                        username}, this.onEndGetUnreceivedMessagesDelegate, this.onGetUnreceivedMessagesCompletedDelegate, userState);
+        }
+        
+        public bool UpdateInformation(ZolaClient.ZolaService.User user) {
+            return base.Channel.UpdateInformation(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateInformation(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateInformation(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndUpdateInformation(System.IAsyncResult result) {
+            return base.Channel.EndUpdateInformation(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateInformation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User user = ((ZolaClient.ZolaService.User)(inValues[0]));
+            return this.BeginUpdateInformation(user, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateInformation(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateInformation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateInformationCompleted(object state) {
+            if ((this.UpdateInformationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateInformationCompleted(this, new UpdateInformationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateInformationAsync(ZolaClient.ZolaService.User user) {
+            this.UpdateInformationAsync(user, null);
+        }
+        
+        public void UpdateInformationAsync(ZolaClient.ZolaService.User user, object userState) {
+            if ((this.onBeginUpdateInformationDelegate == null)) {
+                this.onBeginUpdateInformationDelegate = new BeginOperationDelegate(this.OnBeginUpdateInformation);
+            }
+            if ((this.onEndUpdateInformationDelegate == null)) {
+                this.onEndUpdateInformationDelegate = new EndOperationDelegate(this.OnEndUpdateInformation);
+            }
+            if ((this.onUpdateInformationCompletedDelegate == null)) {
+                this.onUpdateInformationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateInformationCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateInformationDelegate, new object[] {
+                        user}, this.onEndUpdateInformationDelegate, this.onUpdateInformationCompletedDelegate, userState);
+        }
+        
+        public bool UpdatePassword(string username, string password) {
+            return base.Channel.UpdatePassword(username, password);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdatePassword(string username, string password, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdatePassword(username, password, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndUpdatePassword(System.IAsyncResult result) {
+            return base.Channel.EndUpdatePassword(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdatePassword(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            string password = ((string)(inValues[1]));
+            return this.BeginUpdatePassword(username, password, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdatePassword(System.IAsyncResult result) {
+            bool retVal = this.EndUpdatePassword(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdatePasswordCompleted(object state) {
+            if ((this.UpdatePasswordCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdatePasswordCompleted(this, new UpdatePasswordCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdatePasswordAsync(string username, string password) {
+            this.UpdatePasswordAsync(username, password, null);
+        }
+        
+        public void UpdatePasswordAsync(string username, string password, object userState) {
+            if ((this.onBeginUpdatePasswordDelegate == null)) {
+                this.onBeginUpdatePasswordDelegate = new BeginOperationDelegate(this.OnBeginUpdatePassword);
+            }
+            if ((this.onEndUpdatePasswordDelegate == null)) {
+                this.onEndUpdatePasswordDelegate = new EndOperationDelegate(this.OnEndUpdatePassword);
+            }
+            if ((this.onUpdatePasswordCompletedDelegate == null)) {
+                this.onUpdatePasswordCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdatePasswordCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdatePasswordDelegate, new object[] {
+                        username,
+                        password}, this.onEndUpdatePasswordDelegate, this.onUpdatePasswordCompletedDelegate, userState);
+        }
+        
+        public bool UpdateAvatar(string username, ZolaClient.ZolaService.DataFile newAvatar) {
+            return base.Channel.UpdateAvatar(username, newAvatar);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateAvatar(string username, ZolaClient.ZolaService.DataFile newAvatar, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateAvatar(username, newAvatar, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndUpdateAvatar(System.IAsyncResult result) {
+            return base.Channel.EndUpdateAvatar(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateAvatar(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            ZolaClient.ZolaService.DataFile newAvatar = ((ZolaClient.ZolaService.DataFile)(inValues[1]));
+            return this.BeginUpdateAvatar(username, newAvatar, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateAvatar(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateAvatar(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateAvatarCompleted(object state) {
+            if ((this.UpdateAvatarCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateAvatarCompleted(this, new UpdateAvatarCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateAvatarAsync(string username, ZolaClient.ZolaService.DataFile newAvatar) {
+            this.UpdateAvatarAsync(username, newAvatar, null);
+        }
+        
+        public void UpdateAvatarAsync(string username, ZolaClient.ZolaService.DataFile newAvatar, object userState) {
+            if ((this.onBeginUpdateAvatarDelegate == null)) {
+                this.onBeginUpdateAvatarDelegate = new BeginOperationDelegate(this.OnBeginUpdateAvatar);
+            }
+            if ((this.onEndUpdateAvatarDelegate == null)) {
+                this.onEndUpdateAvatarDelegate = new EndOperationDelegate(this.OnEndUpdateAvatar);
+            }
+            if ((this.onUpdateAvatarCompletedDelegate == null)) {
+                this.onUpdateAvatarCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateAvatarCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateAvatarDelegate, new object[] {
+                        username,
+                        newAvatar}, this.onEndUpdateAvatarDelegate, this.onUpdateAvatarCompletedDelegate, userState);
+        }
+        
+        public void Writting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter) {
+            base.Channel.Writting(writer, waiter);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginWritting(writer, waiter, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndWritting(System.IAsyncResult result) {
+            base.Channel.EndWritting(result);
+        }
+        
+        private System.IAsyncResult OnBeginWritting(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User writer = ((ZolaClient.ZolaService.User)(inValues[0]));
+            ZolaClient.ZolaService.User waiter = ((ZolaClient.ZolaService.User)(inValues[1]));
+            return this.BeginWritting(writer, waiter, callback, asyncState);
+        }
+        
+        private object[] OnEndWritting(System.IAsyncResult result) {
+            this.EndWritting(result);
+            return null;
+        }
+        
+        private void OnWrittingCompleted(object state) {
+            if ((this.WrittingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.WrittingCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void WrittingAsync(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter) {
+            this.WrittingAsync(writer, waiter, null);
+        }
+        
+        public void WrittingAsync(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User waiter, object userState) {
+            if ((this.onBeginWrittingDelegate == null)) {
+                this.onBeginWrittingDelegate = new BeginOperationDelegate(this.OnBeginWritting);
+            }
+            if ((this.onEndWrittingDelegate == null)) {
+                this.onEndWrittingDelegate = new EndOperationDelegate(this.OnEndWritting);
+            }
+            if ((this.onWrittingCompletedDelegate == null)) {
+                this.onWrittingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnWrittingCompleted);
+            }
+            base.InvokeAsync(this.onBeginWrittingDelegate, new object[] {
+                        writer,
+                        waiter}, this.onEndWrittingDelegate, this.onWrittingCompletedDelegate, userState);
+        }
+        
+        public void SendFriendRequest(string sender, string stranger) {
+            base.Channel.SendFriendRequest(sender, stranger);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendFriendRequest(string sender, string stranger, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendFriendRequest(sender, stranger, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndSendFriendRequest(System.IAsyncResult result) {
+            base.Channel.EndSendFriendRequest(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendFriendRequest(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string sender = ((string)(inValues[0]));
+            string stranger = ((string)(inValues[1]));
+            return this.BeginSendFriendRequest(sender, stranger, callback, asyncState);
+        }
+        
+        private object[] OnEndSendFriendRequest(System.IAsyncResult result) {
+            this.EndSendFriendRequest(result);
+            return null;
+        }
+        
+        private void OnSendFriendRequestCompleted(object state) {
+            if ((this.SendFriendRequestCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendFriendRequestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendFriendRequestAsync(string sender, string stranger) {
+            this.SendFriendRequestAsync(sender, stranger, null);
+        }
+        
+        public void SendFriendRequestAsync(string sender, string stranger, object userState) {
+            if ((this.onBeginSendFriendRequestDelegate == null)) {
+                this.onBeginSendFriendRequestDelegate = new BeginOperationDelegate(this.OnBeginSendFriendRequest);
+            }
+            if ((this.onEndSendFriendRequestDelegate == null)) {
+                this.onEndSendFriendRequestDelegate = new EndOperationDelegate(this.OnEndSendFriendRequest);
+            }
+            if ((this.onSendFriendRequestCompletedDelegate == null)) {
+                this.onSendFriendRequestCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendFriendRequestCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendFriendRequestDelegate, new object[] {
+                        sender,
+                        stranger}, this.onEndSendFriendRequestDelegate, this.onSendFriendRequestCompletedDelegate, userState);
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> GetPendingFriendRequests(ZolaClient.ZolaService.User user) {
+            return base.Channel.GetPendingFriendRequests(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetPendingFriendRequests(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPendingFriendRequests(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetPendingFriendRequests(System.IAsyncResult result) {
+            return base.Channel.EndGetPendingFriendRequests(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetPendingFriendRequests(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User user = ((ZolaClient.ZolaService.User)(inValues[0]));
+            return this.BeginGetPendingFriendRequests(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetPendingFriendRequests(System.IAsyncResult result) {
+            System.Collections.Generic.List<ZolaClient.ZolaService.User> retVal = this.EndGetPendingFriendRequests(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetPendingFriendRequestsCompleted(object state) {
+            if ((this.GetPendingFriendRequestsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetPendingFriendRequestsCompleted(this, new GetPendingFriendRequestsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetPendingFriendRequestsAsync(ZolaClient.ZolaService.User user) {
+            this.GetPendingFriendRequestsAsync(user, null);
+        }
+        
+        public void GetPendingFriendRequestsAsync(ZolaClient.ZolaService.User user, object userState) {
+            if ((this.onBeginGetPendingFriendRequestsDelegate == null)) {
+                this.onBeginGetPendingFriendRequestsDelegate = new BeginOperationDelegate(this.OnBeginGetPendingFriendRequests);
+            }
+            if ((this.onEndGetPendingFriendRequestsDelegate == null)) {
+                this.onEndGetPendingFriendRequestsDelegate = new EndOperationDelegate(this.OnEndGetPendingFriendRequests);
+            }
+            if ((this.onGetPendingFriendRequestsCompletedDelegate == null)) {
+                this.onGetPendingFriendRequestsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPendingFriendRequestsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetPendingFriendRequestsDelegate, new object[] {
+                        user}, this.onEndGetPendingFriendRequestsDelegate, this.onGetPendingFriendRequestsCompletedDelegate, userState);
+        }
+        
+        public void AcceptFriendRequest(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar) {
+            base.Channel.AcceptFriendRequest(foo, bar);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAcceptFriendRequest(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAcceptFriendRequest(foo, bar, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAcceptFriendRequest(System.IAsyncResult result) {
+            base.Channel.EndAcceptFriendRequest(result);
+        }
+        
+        private System.IAsyncResult OnBeginAcceptFriendRequest(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User foo = ((ZolaClient.ZolaService.User)(inValues[0]));
+            ZolaClient.ZolaService.User bar = ((ZolaClient.ZolaService.User)(inValues[1]));
+            return this.BeginAcceptFriendRequest(foo, bar, callback, asyncState);
+        }
+        
+        private object[] OnEndAcceptFriendRequest(System.IAsyncResult result) {
+            this.EndAcceptFriendRequest(result);
+            return null;
+        }
+        
+        private void OnAcceptFriendRequestCompleted(object state) {
+            if ((this.AcceptFriendRequestCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AcceptFriendRequestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AcceptFriendRequestAsync(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar) {
+            this.AcceptFriendRequestAsync(foo, bar, null);
+        }
+        
+        public void AcceptFriendRequestAsync(ZolaClient.ZolaService.User foo, ZolaClient.ZolaService.User bar, object userState) {
+            if ((this.onBeginAcceptFriendRequestDelegate == null)) {
+                this.onBeginAcceptFriendRequestDelegate = new BeginOperationDelegate(this.OnBeginAcceptFriendRequest);
+            }
+            if ((this.onEndAcceptFriendRequestDelegate == null)) {
+                this.onEndAcceptFriendRequestDelegate = new EndOperationDelegate(this.OnEndAcceptFriendRequest);
+            }
+            if ((this.onAcceptFriendRequestCompletedDelegate == null)) {
+                this.onAcceptFriendRequestCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAcceptFriendRequestCompleted);
+            }
+            base.InvokeAsync(this.onBeginAcceptFriendRequestDelegate, new object[] {
+                        foo,
+                        bar}, this.onEndAcceptFriendRequestDelegate, this.onAcceptFriendRequestCompletedDelegate, userState);
+        }
+        
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> GetSentFriendRequest(ZolaClient.ZolaService.User user) {
+            return base.Channel.GetSentFriendRequest(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSentFriendRequest(ZolaClient.ZolaService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSentFriendRequest(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<ZolaClient.ZolaService.User> EndGetSentFriendRequest(System.IAsyncResult result) {
+            return base.Channel.EndGetSentFriendRequest(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSentFriendRequest(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User user = ((ZolaClient.ZolaService.User)(inValues[0]));
+            return this.BeginGetSentFriendRequest(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSentFriendRequest(System.IAsyncResult result) {
+            System.Collections.Generic.List<ZolaClient.ZolaService.User> retVal = this.EndGetSentFriendRequest(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSentFriendRequestCompleted(object state) {
+            if ((this.GetSentFriendRequestCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSentFriendRequestCompleted(this, new GetSentFriendRequestCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSentFriendRequestAsync(ZolaClient.ZolaService.User user) {
+            this.GetSentFriendRequestAsync(user, null);
+        }
+        
+        public void GetSentFriendRequestAsync(ZolaClient.ZolaService.User user, object userState) {
+            if ((this.onBeginGetSentFriendRequestDelegate == null)) {
+                this.onBeginGetSentFriendRequestDelegate = new BeginOperationDelegate(this.OnBeginGetSentFriendRequest);
+            }
+            if ((this.onEndGetSentFriendRequestDelegate == null)) {
+                this.onEndGetSentFriendRequestDelegate = new EndOperationDelegate(this.OnEndGetSentFriendRequest);
+            }
+            if ((this.onGetSentFriendRequestCompletedDelegate == null)) {
+                this.onGetSentFriendRequestCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSentFriendRequestCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSentFriendRequestDelegate, new object[] {
+                        user}, this.onEndGetSentFriendRequestDelegate, this.onGetSentFriendRequestCompletedDelegate, userState);
         }
     }
 }

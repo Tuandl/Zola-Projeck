@@ -27,11 +27,12 @@ namespace ZolaClient
         /// Create instance to connect to server through IP address
         /// </summary>
         /// <param name="ip"></param>
-        public static void Connect()
+        public static void Connect(ZolaService.IChatServiceCallback callback)
         {
             if (_proxy == null)
             {
-                _proxy = new ZolaService.ChatServiceClient();
+                InstanceContext context = new InstanceContext(callback);
+                _proxy = new ZolaService.ChatServiceClient(context);
             }
             if (_proxy.State != System.ServiceModel.CommunicationState.Opened)
             {
@@ -49,8 +50,27 @@ namespace ZolaClient
         /// </summary>
         public static void Disconnect()
         {
-            _proxy.Close();
-            _proxy = null;
+            if(_proxy != null)
+            {
+                switch (_proxy.State)
+                {
+                    case CommunicationState.Closed: break;
+                    case CommunicationState.Closing: break;
+                    case CommunicationState.Created:
+                        _proxy.Close();
+                        break;
+                    case CommunicationState.Faulted:
+                        _proxy.Abort();
+                        break;
+                    case CommunicationState.Opened:
+                        _proxy.Close();
+                        break;
+                    case CommunicationState.Opening:
+                        _proxy.Close();
+                        break;
+                }
+                _proxy = null;
+            }
         }
     }
 }
