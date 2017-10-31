@@ -16,6 +16,9 @@ namespace ServerLibrary
         bool Login(string username, string password);
 
         [OperationContract(IsOneWay = false)]
+        User GetUserInformation(string username);
+
+        [OperationContract(IsOneWay = false)]
         List<User> GetFriends(string username);
 
         [OperationContract(IsOneWay = false)]
@@ -56,5 +59,8 @@ namespace ServerLibrary
 
         [OperationContract(IsOneWay = false)]
         List<User> GetSentFriendRequest(User user);
+
+        [OperationContract(IsOneWay = true)]
+        void Logout(User user);
     }
 }

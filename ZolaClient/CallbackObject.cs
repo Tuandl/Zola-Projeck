@@ -116,6 +116,21 @@ namespace ZolaClient
         {
             throw new NotImplementedException();
         }
+
+        public void FriendOffline(User offlineFriend)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginFriendOffline(User offlineFriend, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndFriendOffline(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }

@@ -15,6 +15,7 @@ namespace ServerLibrary
         #region Constants
 
         private static readonly string AVATAR_LOCATION = Environment.CurrentDirectory + @"\Resources\Avatar\";
+        private static readonly string[] SUPPORT_AVATAR_EXTENSIONS = { "png", "jpg", "jpeg" };
 
         #endregion
 
@@ -86,7 +87,7 @@ namespace ServerLibrary
                         Name = (string)reader["name"],
                         Username = (string)reader["username"]
                     };
-                    if(reader["gender"].ToString().Length > 0)
+                    if (reader["gender"].ToString().Length > 0)
                     {
                         user.IsMale = (bool)reader["gender"];
                     }
@@ -115,8 +116,8 @@ namespace ServerLibrary
                         User barUser = _allUsers.Find(x => x.Username == bar);
                         _relationship[fooUser].Friends.Add(_relationship[barUser]);
                         _relationship[barUser].Friends.Add(_relationship[fooUser]);
-                    } 
-                    else if(relationType == (int)RelationshipType.Pending)
+                    }
+                    else if (relationType == (int)RelationshipType.Pending)
                     {
                         User fooUser = _allUsers.Find(x => x.Username == foo);
                         User barUser = _allUsers.Find(x => x.Username == bar);
@@ -195,6 +196,49 @@ namespace ServerLibrary
                         try
                         {
                             _onlineUsers[friend].FriendOnline(curUser);
+                        }
+                        catch
+                        {
+                            nothingCorrupt = false;
+                            friend.IsOnline = false;
+                            _onlineUsers.Remove(friend);
+                        }
+                    }
+                }
+            }
+
+            if (!nothingCorrupt)
+            {
+                foreach (IChatServiceCallback callback in _onlineUsers.Values)
+                {
+                    callback.FriendOnlineListChangeUnexpectedly();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remove Online user, if complete notify all online friends of this user
+        /// If online friends list suddenly change, notify callback all friend to update.
+        /// </summary>
+        /// <param name="username"></param>
+        private void RemoveUserOnline(string username)
+        {
+            bool nothingCorrupt = true;
+            lock (_synObj)
+            {
+
+                User curUser = _allUsers.Find(x => x.Username == username);
+                if (curUser.IsOnline == true)
+                {
+                    curUser.IsOnline = false;
+                    _onlineUsers.Remove(curUser);
+                    foreach (NodeRelationship nodeFriend in _relationship[curUser].Friends)
+                    {
+                        User friend = nodeFriend.User;
+                        if (friend.IsOnline == false) continue;
+                        try
+                        {
+                            _onlineUsers[friend].FriendOffline(curUser);
                         }
                         catch
                         {
@@ -430,9 +474,18 @@ namespace ServerLibrary
 
         public bool IsUserHasAvatar(string username)
         {
-            FileInfo file = new FileInfo(AVATAR_LOCATION + username);
-            if (file.Exists) return true;
-            return false;
+            bool res = false;
+            FileInfo file;
+            for (int i = 0; i < SUPPORT_AVATAR_EXTENSIONS.Length; i++)
+            {
+                file = new FileInfo(AVATAR_LOCATION + username + "." + SUPPORT_AVATAR_EXTENSIONS[i]);
+                if (file.Exists)
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
         }
 
         public List<User> FindStranger(string curUsername, string strangerUsername)
@@ -567,11 +620,17 @@ namespace ServerLibrary
         {
             bool res = false;
             int wildcardPos = newAvatar.FileName.LastIndexOf('.');
-            string filename = username + newAvatar.FileName.Substring(wildcardPos + 1);
+            string filename = username + newAvatar.FileName.Substring(wildcardPos);
 
-            FileInfo file = new FileInfo(AVATAR_LOCATION + filename);
-            if (file.Exists)
-                file.Delete();
+            FileInfo file;
+            for (int i = 0; i < SUPPORT_AVATAR_EXTENSIONS.Length; i++)
+            {
+                file = new FileInfo(AVATAR_LOCATION + username + "." + SUPPORT_AVATAR_EXTENSIONS[i]);
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
 
             File.WriteAllBytes(AVATAR_LOCATION + filename, newAvatar.Data);
 
@@ -650,6 +709,36 @@ namespace ServerLibrary
                 }
             }
             return res;
+        }
+
+        public User GetUserInformation(string username)
+        {
+            User res = null;
+            string query = "SELECT * FROM Users WHERE username = @username";
+            using (SqlConnection connection = new SqlConnection(_strConnection))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    res = new User()
+                    {
+                        Name = (string)reader["name"],
+                        Username = (string)reader["username"],
+                        IsMale = reader["gender"] as bool?
+                    };
+                }
+            }
+
+            return res;
+        }
+
+        public void Logout(User user)
+        {
+            RemoveUserOnline(user.Username);
         }
 
 

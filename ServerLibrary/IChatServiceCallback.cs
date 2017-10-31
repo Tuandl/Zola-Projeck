@@ -11,6 +11,9 @@ namespace ServerLibrary
         void FriendOnline(User onlineFriend);
 
         [OperationContract(IsOneWay = true)]
+        void FriendOffline(User offlineFriend);
+
+        [OperationContract(IsOneWay = true)]
         void FriendOnlineListChangeUnexpectedly();
 
         [OperationContract(IsOneWay = false)]

@@ -29,12 +29,19 @@ namespace ZolaClient
         {
             try
             {
-                App.Connect(new CallbackObject());
+                MainWindow chatWindow = new MainWindow();
+                App.Connect(chatWindow);
                 string username = txtUsername.Text;
                 string password = txtPassword.Password;
                 if (App.Proxy.Login(username, password))
                 {
                     MessageBox.Show("Login Success");
+                    ZolaService.User user = App.Proxy.GetUserInformation(username);
+                    chatWindow.Init(user);
+                    this.Hide();
+                    chatWindow.ShowDialog();
+                    App.Proxy.Logout(user);
+                    this.Show();
                 }
                 else
                 {
@@ -67,11 +74,17 @@ namespace ZolaClient
         private void ctmIPConfig_Click(object sender, RoutedEventArgs e)
         {
             IpConfig ipConfigDialog = new IpConfig();
-            if(ipConfigDialog.ShowDialog() == true)
+            if (ipConfigDialog.ShowDialog() == true)
             {
                 App.IP = ipConfigDialog.NewIP;
             }
             MessageBox.Show("new ip: " + App.IP);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Disconnect();
+            MessageBox.Show("Closing");
         }
     }
 }

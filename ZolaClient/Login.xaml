@@ -7,7 +7,7 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Icon="/Resources/img/zola-icon.png"
         Title="Zola" Height="348.797" Width="331.357" 
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize" Closing="Window_Closing">
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="_IP config" Name="ctmIPConfig" Click="ctmIPConfig_Click"/>

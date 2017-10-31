@@ -64,11 +64,11 @@
         </DockPanel>
         <DockPanel DockPanel.Dock="Left" Width="229">
             <DockPanel DockPanel.Dock="Top" Margin="5">
-                <Image Source="Resources/img/avatar-default.png"
+                <Image Name="imgCurUserAvatar" Source="Resources/img/avatar-default.png"
                    Width="75" Height="75"
                    DockPanel.Dock="Left"/>
                 <StackPanel Margin="10 0 0 0">
-                    <TextBlock Margin="5">Hello <TextBlock Name="txtblUsername">abc</TextBlock></TextBlock>
+                    <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"></TextBlock></TextBlock>
                     <Button>Update Information</Button>
                     <Button Margin="0 5 0 0">Change avatar</Button>
                     <Button Margin="0 5 0 0">Find Stranger</Button>

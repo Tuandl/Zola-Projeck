@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CallbackObject.cs" />
+    <Compile Include="Helpers\AvatarHelper.cs" />
     <Compile Include="IpConfig.xaml.cs">
       <DependentUpon>IpConfig.xaml</DependentUpon>
     </Compile>
