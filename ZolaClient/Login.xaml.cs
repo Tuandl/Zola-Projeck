@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
+using ZolaClient.Helpers;
 
 namespace ZolaClient
 {
@@ -23,6 +24,8 @@ namespace ZolaClient
         public Login()
         {
             InitializeComponent();
+            txtUsername.Focus();
+            AvatarHelper.InitAvatarDirectory();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -85,6 +88,7 @@ namespace ZolaClient
         {
             App.Disconnect();
             MessageBox.Show("Closing");
+            e.Cancel = false;
         }
     }
 }

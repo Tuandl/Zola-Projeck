@@ -464,11 +464,21 @@ namespace ServerLibrary
 
         public DataFile GetAvatarFile(string username)
         {
-            DataFile result = new DataFile
+            FileInfo file;
+            DataFile result = null;
+            for (int i = 0; i < SUPPORT_AVATAR_EXTENSIONS.Length; i++)
             {
-                FileName = username,
-                Data = File.ReadAllBytes(AVATAR_LOCATION + username)
-            };
+                file = new FileInfo(AVATAR_LOCATION + username + "." + SUPPORT_AVATAR_EXTENSIONS[i]);
+                if (file.Exists)
+                {
+                    result = new DataFile
+                    {
+                        FileName = file.Name,
+                        Data = File.ReadAllBytes(file.FullName)
+                    };
+                    break;
+                }
+            }
             return result;
         }
 
@@ -634,6 +644,7 @@ namespace ServerLibrary
             }
 
             File.WriteAllBytes(AVATAR_LOCATION + filename, newAvatar.Data);
+            res = true;
 
             lock (_synObj)
             {

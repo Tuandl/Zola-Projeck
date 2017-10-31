@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +22,13 @@ namespace ZolaClient.Dialogs
     /// </summary>
     public partial class UpdateInformation : Window
     {
+        private OpenFileDialog openFile = new OpenFileDialog();
         private ZolaService.User _curUser;
 
         public UpdateInformation(ZolaService.User user)
         {
             InitializeComponent();
+
             this._curUser = user;
             this.txtUsername.Text = user.Username;
             this.txtName.Text = user.Name;
@@ -41,6 +45,11 @@ namespace ZolaClient.Dialogs
             {
                 imgAvatar.Source = new BitmapImage(new Uri(avatarPath, UriKind.Absolute));
             }
+            
+            openFile.Filter = "Image Files (*.png, *.jpg, *.jpeg)|*.png;*.jpg;*.jpeg";
+            openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openFile.Multiselect = false;
+            btnUpdateImage.IsEnabled = false;
         }
 
         private void btnUpdateInfo_Click(object sender, RoutedEventArgs e)
@@ -102,6 +111,34 @@ namespace ZolaClient.Dialogs
             else
             {
                 MessageBox.Show("Old password does not match!");
+            }
+        }
+
+        private void btnBrowseImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (openFile.ShowDialog() == true)
+            {
+                string imgUrl = openFile.FileName;
+                imgAvatar.Source = new BitmapImage(new Uri(imgUrl, UriKind.Absolute));
+                btnUpdateImage.IsEnabled = true;
+            }
+        }
+
+        private void btnUpdateImage_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo file = new FileInfo(openFile.FileName);
+            ZolaService.DataFile newAvatar = new ZolaService.DataFile()
+            {
+                FileName = file.Name,
+                Data = File.ReadAllBytes(file.FullName)
+            };
+            if (App.Proxy.UpdateAvatar(_curUser.Username, newAvatar))
+            {
+                MessageBox.Show("update avatar complete");
+            }
+            else
+            {
+                MessageBox.Show("error");
             }
         }
     }

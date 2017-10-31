@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ZolaClient.Helpers;
 using ZolaClient.ZolaService;
 using System.ServiceModel;
+using System.ComponentModel;
 
 namespace ZolaClient
 {
@@ -37,6 +38,7 @@ namespace ZolaClient
             this._curUser = user;
             InitUser();
             InitFriends();
+            InitFriendsAvatar();
         }
 
         #region private methods
@@ -45,7 +47,6 @@ namespace ZolaClient
         {
             txtblCurUserName.Text = _curUser.Name;
             AvatarHelper.LoadAvatar(imgCurUserAvatar, _curUser.Username);
-
         }
 
         private void InitFriends()
@@ -56,12 +57,16 @@ namespace ZolaClient
             {
                 DisplayUser user = new DisplayUser()
                 {
-                    AvatarUrl = Environment.CurrentDirectory + @"\Resources\img\avatar-default.png",
+                    AvatarUrl = AvatarHelper.DefaultAvatarPath,
                     Name = friend.Name,
                     Username = friend.Username,
                     IsOnline = friend.IsOnline
                 };
-
+                string avatarPath = AvatarHelper.GetAvatarPath(friend.Username);
+                if (avatarPath != null)
+                {
+                    user.AvatarUrl = avatarPath;
+                }
                 ListViewItem item = new ListViewItem();
                 item.Content = user;
                 if (user.IsOnline)
@@ -77,6 +82,47 @@ namespace ZolaClient
             }
             lvFriends.ItemsSource = _displayFriends;
         }
+
+        private void InitFriendsAvatar()
+        {
+            foreach (ZolaService.User friend in _friends)
+            {
+                BackgroundWorker findFriendAvatar = new BackgroundWorker();
+                findFriendAvatar.WorkerReportsProgress = false;
+                findFriendAvatar.WorkerSupportsCancellation = true;
+                findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
+                findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
+                findFriendAvatar.RunWorkerAsync(friend.Username);
+            }
+        }
+
+        #region Load Friend Avatar worker
+        private void FindFriendAvatar_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ZolaService.DataFile avatar = null;
+            string username = e.Argument.ToString();
+            if (App.Proxy.IsUserHasAvatar(username))
+            {
+                avatar = App.Proxy.GetAvatarFile(username);
+                AvatarHelper.SaveAvatar(username, avatar);
+            }
+            e.Result = username;
+        }
+
+        private void FindFriendAvatar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            string username = e.Result.ToString();
+            //MessageBox.Show("before " + (_displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser).AvatarUrl);
+            DisplayUser user = _displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
+            user.AvatarUrl = AvatarHelper.GetAvatarPath(username);
+            //lvFriends.ItemsSource = null;
+            //lvFriends.ItemsSource = _displayFriends;
+            //MessageBox.Show((_displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser).AvatarUrl);
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvFriends.ItemsSource);
+            view.Refresh();
+        }
+        #endregion
+
 
         private void TestTemplate()
         {

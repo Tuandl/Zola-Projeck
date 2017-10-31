@@ -11,6 +11,21 @@ namespace ZolaClient.Helpers
     {
         private static readonly string AVATAR_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Zola\avatar\";
         private static readonly string[] SUPPORT_AVATAR_EXTENSIONS = { "png", "jpg", "jpeg" };
+        private static readonly string DEFAULT_AVATAR_PATH = Environment.CurrentDirectory + @"\Resources\img\avatar-default.png";
+
+        public static string DefaultAvatarPath { get { return DEFAULT_AVATAR_PATH; } }
+
+        /// <summary>
+        /// Create folder for zola avatar if not exist
+        /// </summary>
+        public static void InitAvatarDirectory()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AVATAR_PATH);
+            if (!dir.Exists)
+            {
+                dir.Create();
+            }
+        }
 
         /// <summary>
         /// Get avatar extension if exist
