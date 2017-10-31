@@ -361,10 +361,10 @@ namespace ZolaClient.ZolaService {
         bool EndUpdateInformation(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/UpdatePassword", ReplyAction="http://tempuri.org/IChatService/UpdatePasswordResponse")]
-        bool UpdatePassword(string username, string password);
+        bool UpdatePassword(string username, string oldPass, string newPass);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IChatService/UpdatePassword", ReplyAction="http://tempuri.org/IChatService/UpdatePasswordResponse")]
-        System.IAsyncResult BeginUpdatePassword(string username, string password, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdatePassword(string username, string oldPass, string newPass, System.AsyncCallback callback, object asyncState);
         
         bool EndUpdatePassword(System.IAsyncResult result);
         
@@ -1419,13 +1419,13 @@ namespace ZolaClient.ZolaService {
                         user}, this.onEndUpdateInformationDelegate, this.onUpdateInformationCompletedDelegate, userState);
         }
         
-        public bool UpdatePassword(string username, string password) {
-            return base.Channel.UpdatePassword(username, password);
+        public bool UpdatePassword(string username, string oldPass, string newPass) {
+            return base.Channel.UpdatePassword(username, oldPass, newPass);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginUpdatePassword(string username, string password, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdatePassword(username, password, callback, asyncState);
+        public System.IAsyncResult BeginUpdatePassword(string username, string oldPass, string newPass, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdatePassword(username, oldPass, newPass, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1435,8 +1435,9 @@ namespace ZolaClient.ZolaService {
         
         private System.IAsyncResult OnBeginUpdatePassword(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string username = ((string)(inValues[0]));
-            string password = ((string)(inValues[1]));
-            return this.BeginUpdatePassword(username, password, callback, asyncState);
+            string oldPass = ((string)(inValues[1]));
+            string newPass = ((string)(inValues[2]));
+            return this.BeginUpdatePassword(username, oldPass, newPass, callback, asyncState);
         }
         
         private object[] OnEndUpdatePassword(System.IAsyncResult result) {
@@ -1452,11 +1453,11 @@ namespace ZolaClient.ZolaService {
             }
         }
         
-        public void UpdatePasswordAsync(string username, string password) {
-            this.UpdatePasswordAsync(username, password, null);
+        public void UpdatePasswordAsync(string username, string oldPass, string newPass) {
+            this.UpdatePasswordAsync(username, oldPass, newPass, null);
         }
         
-        public void UpdatePasswordAsync(string username, string password, object userState) {
+        public void UpdatePasswordAsync(string username, string oldPass, string newPass, object userState) {
             if ((this.onBeginUpdatePasswordDelegate == null)) {
                 this.onBeginUpdatePasswordDelegate = new BeginOperationDelegate(this.OnBeginUpdatePassword);
             }
@@ -1468,7 +1469,8 @@ namespace ZolaClient.ZolaService {
             }
             base.InvokeAsync(this.onBeginUpdatePasswordDelegate, new object[] {
                         username,
-                        password}, this.onEndUpdatePasswordDelegate, this.onUpdatePasswordCompletedDelegate, userState);
+                        oldPass,
+                        newPass}, this.onEndUpdatePasswordDelegate, this.onUpdatePasswordCompletedDelegate, userState);
         }
         
         public bool UpdateAvatar(string username, ZolaClient.ZolaService.DataFile newAvatar) {

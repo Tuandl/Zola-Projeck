@@ -33,7 +33,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center">
             <WrapPanel HorizontalAlignment="Right" Margin="3">
                 <Label Content="Old Password:"/>
-                <PasswordBox Name="txtPassword" VerticalAlignment="Center" Margin="3" Width="100"/>
+                <PasswordBox Name="txtOldPassword" VerticalAlignment="Center" Margin="3" Width="100"/>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Right" Margin="3">
                 <Label Content="New Password:"/>
@@ -43,7 +43,7 @@
                 <Label Content="Confirm:"/>
                 <PasswordBox Name="txtConfirmPassword" VerticalAlignment="Center" Margin="3" Width="100"/>
             </WrapPanel>
-            <Button Name="btnUpdatePassword">Update Password</Button>
+            <Button Name="btnUpdatePassword" Click="btnUpdatePassword_Click">Update Password</Button>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Right" Width="212" Margin="20"

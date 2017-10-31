@@ -28,16 +28,16 @@ namespace ZolaClient.Dialogs
             this._curUser = user;
             this.txtUsername.Text = user.Username;
             this.txtName.Text = user.Name;
-            if(_curUser.IsMale == true)
+            if (_curUser.IsMale == true)
             {
                 cbMale.IsChecked = true;
             }
-            if(_curUser.IsMale == false)
+            if (_curUser.IsMale == false)
             {
                 cbFemale.IsChecked = true;
             }
             string avatarPath = AvatarHelper.GetAvatarPath(user.Username);
-            if(avatarPath != null)
+            if (avatarPath != null)
             {
                 imgAvatar.Source = new BitmapImage(new Uri(avatarPath, UriKind.Absolute));
             }
@@ -62,7 +62,7 @@ namespace ZolaClient.Dialogs
                 MessageBox.Show("Please select a gender");
                 return;
             }
-            if(name.Length < 1)
+            if (name.Length < 1)
             {
                 MessageBox.Show("Please Input name");
                 return;
@@ -77,6 +77,31 @@ namespace ZolaClient.Dialogs
             else
             {
                 MessageBox.Show("Update False");
+            }
+        }
+
+        private void btnUpdatePassword_Click(object sender, RoutedEventArgs e)
+        {
+            string oldPass = txtOldPassword.Password;
+            string newPass = txtNewPassword.Password;
+            string confirmPass = txtConfirmPassword.Password;
+            if (oldPass.Length == 0 || newPass.Length == 0 || confirmPass.Length == 0)
+            {
+                MessageBox.Show("Please fill the above form");
+                return;
+            }
+            if (newPass != confirmPass)
+            {
+                MessageBox.Show("Confirm does not match");
+                return;
+            }
+            if (App.Proxy.UpdatePassword(_curUser.Username, oldPass, newPass) == true)
+            {
+                MessageBox.Show("Change password success!!");
+            }
+            else
+            {
+                MessageBox.Show("Old password does not match!");
             }
         }
     }

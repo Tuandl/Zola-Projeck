@@ -40,7 +40,7 @@ namespace ServerLibrary
         bool UpdateInformation(User user);
 
         [OperationContract(IsOneWay = false)]
-        bool UpdatePassword(string username, string password);
+        bool UpdatePassword(string username, string oldPass, string newPass);
 
         [OperationContract(IsOneWay = false)]
         bool UpdateAvatar(string username, DataFile newAvatar);

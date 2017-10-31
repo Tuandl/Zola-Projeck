@@ -596,17 +596,18 @@ namespace ServerLibrary
             return res;
         }
 
-        public bool UpdatePassword(string username, string password)
+        public bool UpdatePassword(string username, string oldPass, string newPass)
         {
             bool res = false;
             string query = "UPDATE users " +
                 "SET password = @pass " +
-                "WHERE username = @username";
+                "WHERE username = @username and password = @oldPassword";
             using (SqlConnection connection = new SqlConnection(_strConnection))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@pass", password);
+                command.Parameters.AddWithValue("@pass", newPass);
                 command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@oldPassword", oldPass);
 
                 if (connection.State != System.Data.ConnectionState.Open)
                     connection.Open();
