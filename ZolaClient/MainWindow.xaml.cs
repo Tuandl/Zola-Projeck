@@ -13,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ZolaClient.Helpers;
 using ZolaClient.ZolaService;
+using System.ServiceModel;
 
 namespace ZolaClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class MainWindow : Window, ZolaService.IChatServiceCallback
     {
         private ZolaService.User _curUser = null;
@@ -35,11 +37,6 @@ namespace ZolaClient
             this._curUser = user;
             InitUser();
             InitFriends();
-        }
-
-        private void txtSearchStranger_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         #region private methods
@@ -161,7 +158,7 @@ namespace ZolaClient
 
         public void FriendOnlineListChangeUnexpectedly()
         {
-            throw new NotImplementedException();
+            InitFriends();
         }
         public bool ReceiveMessage(DataMessage message)
         {
@@ -266,6 +263,21 @@ namespace ZolaClient
         }
         #endregion
 
+        #region Even Process
+        private void btnUpdateInformation_Click(object sender, RoutedEventArgs e)
+        {
+            Dialogs.UpdateInformation updateInformationDialog = new Dialogs.UpdateInformation(_curUser);
+            //this.Hide();
+            updateInformationDialog.ShowDialog();
+            //this.Show();
+        }
+
+        private void txtSearchStranger_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 
     #region Display Classed

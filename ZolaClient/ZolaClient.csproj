@@ -55,6 +55,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CallbackObject.cs" />
+    <Compile Include="Dialogs\UpdateInformation.xaml.cs">
+      <DependentUpon>UpdateInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\AvatarHelper.cs" />
     <Compile Include="IpConfig.xaml.cs">
       <DependentUpon>IpConfig.xaml</DependentUpon>
@@ -65,6 +68,10 @@
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\UpdateInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IpConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZolaClient.ZolaService;
+using System.ServiceModel;
 
 namespace ZolaClient
 {
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class CallbackObject : ZolaService.IChatServiceCallback
     {
         #region Implement callback

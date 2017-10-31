@@ -324,7 +324,7 @@ namespace ServerLibrary
         {
             bool res = false;
             string query = "UPDATE Users " +
-                "SET name = @name " +
+                "SET name = @name, " +
                 "gender = @gender " +
                 "WHERE username = @username";
             using (SqlConnection connection = new SqlConnection(_strConnection))
