@@ -15,6 +15,8 @@ using ZolaClient.Helpers;
 using ZolaClient.ZolaService;
 using System.ServiceModel;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace ZolaClient
 {
@@ -26,7 +28,7 @@ namespace ZolaClient
     {
         private ZolaService.User _curUser = null;
         private List<ZolaService.User> _friends = null;
-        private List<ListViewItem> _displayFriends = null;
+        private ObservableCollection<ListViewItem> _displayFriends = null;
 
         public MainWindow()
         {
@@ -51,7 +53,7 @@ namespace ZolaClient
 
         private void InitFriends()
         {
-            _displayFriends = new List<ListViewItem>();
+            _displayFriends = new ObservableCollection<ListViewItem>();
             _friends = App.Proxy.GetFriends(_curUser.Username);
             foreach (ZolaService.User friend in _friends)
             {
@@ -62,11 +64,11 @@ namespace ZolaClient
                     Username = friend.Username,
                     IsOnline = friend.IsOnline
                 };
-                string avatarPath = AvatarHelper.GetAvatarPath(friend.Username);
-                if (avatarPath != null)
-                {
-                    user.AvatarUrl = avatarPath;
-                }
+                //string avatarPath = AvatarHelper.GetAvatarPath(friend.Username);
+                //if (avatarPath != null)
+                //{
+                //    user.AvatarUrl = avatarPath;
+                //}
                 ListViewItem item = new ListViewItem();
                 item.Content = user;
                 if (user.IsOnline)
@@ -112,14 +114,8 @@ namespace ZolaClient
         private void FindFriendAvatar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             string username = e.Result.ToString();
-            //MessageBox.Show("before " + (_displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser).AvatarUrl);
-            DisplayUser user = _displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
+            DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
             user.AvatarUrl = AvatarHelper.GetAvatarPath(username);
-            //lvFriends.ItemsSource = null;
-            //lvFriends.ItemsSource = _displayFriends;
-            //MessageBox.Show((_displayFriends.Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser).AvatarUrl);
-            ICollectionView view = CollectionViewSource.GetDefaultView(lvFriends.ItemsSource);
-            view.Refresh();
         }
         #endregion
 
@@ -187,7 +183,7 @@ namespace ZolaClient
         {
             ZolaService.User friend = _friends.Find(x => x.Username == onlineFriend.Username);
             friend.IsOnline = true;
-            ListViewItem item = _displayFriends.Find(x => (x.Content as DisplayUser).Username == onlineFriend.Username);
+            ListViewItem item = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == onlineFriend.Username);
             item.ContentTemplate = (DataTemplate)this.FindResource("OnlineTemplate");
             //MessageBox.Show("complete online change");
 
@@ -197,7 +193,7 @@ namespace ZolaClient
         {
             ZolaService.User friend = _friends.Find(x => x.Username == offlineFriend.Username);
             friend.IsOnline = true;
-            ListViewItem item = _displayFriends.Find(x => (x.Content as DisplayUser).Username == offlineFriend.Username);
+            ListViewItem item = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == offlineFriend.Username);
             item.ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate");
             //MessageBox.Show("complete online change");
         }
@@ -315,6 +311,7 @@ namespace ZolaClient
             Dialogs.UpdateInformation updateInformationDialog = new Dialogs.UpdateInformation(_curUser);
             //this.Hide();
             updateInformationDialog.ShowDialog();
+            updateInformationDialog.Close();
             //this.Show();
         }
 
@@ -323,16 +320,71 @@ namespace ZolaClient
 
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this._curUser = null;
+            this._friends.Clear();
+            this._friends = null;
+            this._displayFriends.Clear();
+            this._displayFriends = null;
+        }
+
         #endregion
+
     }
 
     #region Display Classed
-    class DisplayUser
+    class DisplayUser : INotifyPropertyChanged
     {
-        public string AvatarUrl { get; set; }
-        public string Name { get; set; }
-        public string Username { get; set; }
+        private string _avatarUrl;
+        private string _name;
+        private string _username;
+
+        public string AvatarUrl
+        {
+            get { return this._avatarUrl; }
+            set
+            {
+                if (this._avatarUrl != value)
+                {
+                    this._avatarUrl = value;
+                    NotifyPropertyChanged("AvatarUrl");
+                }
+            }
+        }
+        public string Name
+        {
+            get { return this._name; }
+            set
+            {
+                if (this._name != value)
+                {
+                    this._name = value;
+                    NotifyPropertyChanged("Name");
+                }
+            }
+        }
+        public string Username
+        {
+            get { return this._username; }
+            set
+            {
+                if (value != this._username)
+                {
+                    this._username = value;
+                    NotifyPropertyChanged("Username");
+                }
+            }
+        }
         public bool IsOnline { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
     }
 
     class DisplayMessage
@@ -341,5 +393,32 @@ namespace ZolaClient
         public string MessageContent { get; set; }
     }
 
+    #endregion
+
+    #region Converter
+    public class StringToImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            object result = null;
+            string uri = value as string;
+            if (uri != null)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(uri);
+                image.EndInit();
+                result = image;
+            }
+
+            return result;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
     #endregion
 }

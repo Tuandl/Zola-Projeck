@@ -65,7 +65,9 @@ namespace ZolaClient.Helpers
                 file = new FileInfo(AVATAR_PATH + username + "." + SUPPORT_AVATAR_EXTENSIONS[i]);
                 if (file.Exists)
                 {
-                    file.Delete();
+                    //System.GC.Collect();
+                    //System.GC.WaitForPendingFinalizers();
+                    File.Delete(file.FullName);
                 }
             }
 
@@ -106,7 +108,12 @@ namespace ZolaClient.Helpers
                 {
                     ZolaService.DataFile avatarFile = App.Proxy.GetAvatarFile(username);
                     AvatarHelper.SaveAvatar(username, avatarFile);
-                    imgControl.Source = new BitmapImage(new Uri(AvatarHelper.GetAvatarPath(username), UriKind.Absolute));
+                    BitmapImage img = new BitmapImage();
+                    img.BeginInit();
+                    img.UriSource = new Uri(AvatarHelper.GetAvatarPath(username), UriKind.Absolute);
+                    img.CacheOption = BitmapCacheOption.OnLoad;
+                    img.EndInit();
+                    imgControl.Source = img;
                 }
             }
             else

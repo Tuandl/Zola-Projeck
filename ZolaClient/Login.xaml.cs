@@ -30,9 +30,10 @@ namespace ZolaClient
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow chatWindow = null;
             try
             {
-                MainWindow chatWindow = new MainWindow();
+                chatWindow = new MainWindow();
                 App.Connect(chatWindow);
                 string username = txtUsername.Text;
                 string password = txtPassword.Password;
@@ -44,7 +45,7 @@ namespace ZolaClient
                     this.Hide();
                     chatWindow.ShowDialog();
                     App.Proxy.Logout(user);
-                    this.Show();
+                    chatWindow.Close();
                 }
                 else
                 {
@@ -55,6 +56,14 @@ namespace ZolaClient
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            } finally
+            {
+                if(chatWindow != null)
+                {
+                    chatWindow.Hide();
+                    chatWindow.Close();
+                }
+                this.Show();
             }
         }
 
@@ -71,6 +80,7 @@ namespace ZolaClient
             {
                 //this.Show();
             }
+            registerDialog.Close();
             this.Show();
         }
 
@@ -81,14 +91,22 @@ namespace ZolaClient
             {
                 App.IP = ipConfigDialog.NewIP;
             }
+            ipConfigDialog.Close();
             MessageBox.Show("new ip: " + App.IP);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.Disconnect();
-            MessageBox.Show("Closing");
-            e.Cancel = false;
+            //MessageBox.Show("Closing");
+            //e.Cancel = false;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
         }
     }
 }

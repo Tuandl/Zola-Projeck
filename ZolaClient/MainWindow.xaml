@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:ZolaClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="673.03" Width="1042.941"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Window.Resources>
+        <local:StringToImageConverter x:Key="StringToImageConverter" />
         <DataTemplate x:Key="OnlineTemplate">
             <DockPanel Margin="0 3">
                 <Image Width="65" Height="65" 
                                        DockPanel.Dock="Left"
-                                       Source="{Binding AvatarUrl}"/>
+                                       Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}"
@@ -25,7 +26,7 @@
             <DockPanel Margin="0 3" HorizontalAlignment="Stretch">
                 <Image Width="65" Height="65" 
                         DockPanel.Dock="Left"
-                        Source="{Binding AvatarUrl}"/>
+                        Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}" Margin="0 5 0 0"></TextBlock>
