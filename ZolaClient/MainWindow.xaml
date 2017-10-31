@@ -1,0 +1,113 @@
+﻿<Window x:Class="ZolaClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZolaClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="673.03" Width="1042.941"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate x:Key="OnlineTemplate">
+            <DockPanel Margin="0 3">
+                <Image Width="65" Height="65" 
+                                       DockPanel.Dock="Left"
+                                       Source="{Binding AvatarUrl}"/>
+                <StackPanel Margin="10 5 0 0">
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                    <TextBlock Text="{Binding Username}"
+                                               Margin="0 5 0 0"></TextBlock>
+                    <TextBlock Text="Online" Margin="0 5 0 0"></TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="OfflineTemplate">
+            <DockPanel Margin="0 3" HorizontalAlignment="Stretch">
+                <Image Width="65" Height="65" 
+                        DockPanel.Dock="Left"
+                        Source="{Binding AvatarUrl}"/>
+                <StackPanel Margin="10 5 0 0">
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                    <TextBlock Text="{Binding Username}" Margin="0 5 0 0"></TextBlock>
+                    <TextBlock Text="Offline" Margin="0 5 0 0"></TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MyMessageTemplate">
+            <DockPanel Margin="3 3">
+                <Image Width="65" Height="50" 
+                        DockPanel.Dock="Right"
+                        Source="{Binding AvatarUrl}"/>
+                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Right"
+                               Margin="10"/>
+                </Border>
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FriendMessageTemplate">
+            <DockPanel Margin="3 3">
+                <Image Width="65" Height="50" 
+                        DockPanel.Dock="Left"
+                        Source="{Binding AvatarUrl}"/>
+                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Left"
+                               Margin="10"/>
+                </Border>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Left" Width="229">
+            <DockPanel DockPanel.Dock="Top" Margin="5">
+                <Image Source="Resources/img/avatar-default.png"
+                   Width="75" Height="75"
+                   DockPanel.Dock="Left"/>
+                <StackPanel Margin="10 0 0 0">
+                    <TextBlock Margin="5">Hello <TextBlock Name="txtblUsername">abc</TextBlock></TextBlock>
+                    <Button>Update Information</Button>
+                    <Button Margin="0 5 0 0">Change avatar</Button>
+                    <Button Margin="0 5 0 0">Find Stranger</Button>
+                </StackPanel>
+            </DockPanel>
+            <DockPanel Margin="0 10 0 0">
+                <!--search-->
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBox Name="txtSearchStranger" TextChanged="txtSearchStranger_TextChanged"/>
+                </StackPanel>
+                <!--contents-->
+                <DockPanel>
+                    <ListView Name="lvFriends" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Height="112" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Image Name="imgCurFriend" Source="Resources/img/avatar-default.png" Margin="20 10"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Name="txtblNameCurFriend" Margin="10" FontSize="20" FontWeight="Bold">Tên</TextBlock>
+                    <TextBlock Name="txtblUsernameCurFriend" Margin="10" FontSize="15" FontStyle="Italic">Username</TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Bottom" Height="42" >
+                    <Button Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"></Button>
+                    <TextBox Name="txtMessageToSend"></TextBox>
+                </DockPanel>
+                <TextBlock DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3">ABC is writting</TextBlock>
+                <ListView Name="lvChatMessages" BorderBrush="SeaGreen">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</Window>
