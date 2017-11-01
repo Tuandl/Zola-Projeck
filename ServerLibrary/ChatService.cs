@@ -274,15 +274,15 @@ namespace ServerLibrary
             using (SqlConnection connection = new SqlConnection(_strConnection))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@sender", msg.Sender);
-                command.Parameters.AddWithValue("@receiver", msg.Receiver);
+                command.Parameters.AddWithValue("@sender", msg.Sender.Username);
+                command.Parameters.AddWithValue("@receiver", msg.Receiver.Username);
                 command.Parameters.AddWithValue("@time_sent", msg.SentTime);
                 command.Parameters.AddWithValue("@message", msg.Message);
                 command.Parameters.AddWithValue("@status", (int)DataMessageStatus.Sent);
 
                 if (connection.State != System.Data.ConnectionState.Open)
                     connection.Open();
-                result = (int)command.ExecuteScalar();
+                result = int.Parse(command.ExecuteScalar().ToString());
             }
             return result;
         }
@@ -389,6 +389,7 @@ namespace ServerLibrary
         #region Implement IChatService
         public bool Login(string username, string password)
         {
+            Console.WriteLine("call login service params: username = " + username + "; password = " + password);
             bool res = false;
             string query = "SELECT * FROM Users " +
                 "WHERE username = @username and password = @password";
@@ -410,12 +411,13 @@ namespace ServerLibrary
                 //add to online users
                 AddUserOnline(username);
             }
-
+            Console.WriteLine("Exit login service");
             return res;
         }
 
         public bool Register(string username, string password, string name)
         {
+            Console.WriteLine("call register service params: username = " + username + "; password = " + password + "; name = " + name);
             bool registerComplete = false;
             string query = "INSERT INTO Users (username, password, name) " +
                 "VALUES (@username, @password, @name)";
@@ -445,11 +447,13 @@ namespace ServerLibrary
                 _relationship.Add(newUser, new NodeRelationship(newUser));
             }
 
+            Console.WriteLine("Exit register service");
             return registerComplete;
         }
 
         public List<User> GetFriends(string username)
         {
+            Console.WriteLine("Call get friends service params: username = " + username);
             List<User> friends = new List<User>();
             lock (_synObj)
             {
@@ -459,11 +463,13 @@ namespace ServerLibrary
                     friends.Add(node.User);
                 }
             }
+            Console.WriteLine("exit get friends service");
             return friends;
         }
 
         public DataFile GetAvatarFile(string username)
         {
+            Console.WriteLine("call get avatar file params: username = " + username);
             FileInfo file;
             DataFile result = null;
             for (int i = 0; i < SUPPORT_AVATAR_EXTENSIONS.Length; i++)
@@ -479,11 +485,13 @@ namespace ServerLibrary
                     break;
                 }
             }
+            Console.WriteLine("exit get avatar file");
             return result;
         }
 
         public bool IsUserHasAvatar(string username)
         {
+            Console.WriteLine("Call IsUserHasAvatar service. params: username = " + username);
             bool res = false;
             FileInfo file;
             for (int i = 0; i < SUPPORT_AVATAR_EXTENSIONS.Length; i++)
@@ -495,11 +503,13 @@ namespace ServerLibrary
                     break;
                 }
             }
+            Console.WriteLine("exit IsUserHasAvatar services");
             return res;
         }
 
         public List<User> FindStranger(string curUsername, string strangerUsername)
         {
+            Console.WriteLine("call FindStranger service; params: curUsername = " + curUsername + "; strangerUsername = " + strangerUsername);
             List<User> result = new List<User>();
             if (strangerUsername.Length > 0)
             {
@@ -525,29 +535,34 @@ namespace ServerLibrary
                     }
                 }
             }
+            Console.WriteLine("exit FindStranger service");
             return result;
         }
 
         public void SendMessage(DataMessage message)
         {
+            Console.WriteLine("Call SendMessage");
             int id = AddMessageIntoDatabase(message);
             message.Id = id;
+            message.Sender = _allUsers.Find(x => x.Username == message.Sender.Username);
+            message.Receiver = _allUsers.Find(x => x.Username == message.Receiver.Username);
+            Console.WriteLine("sender: " + message.Sender.Username + "; to: " + message.Receiver.Username + "; message: " + message.Message);
             lock (_synNotReceivedMessage)
             {
                 _notReceivedMessages.Add(message);
             }
 
-            if (_onlineUsers.ContainsKey(message.Sender))
+            if (_onlineUsers.ContainsKey(message.Receiver))
             {
                 bool isReceived = false;
                 try
                 {
-                    isReceived = _onlineUsers[message.Sender].ReceiveMessage(message);
+                    isReceived = _onlineUsers[message.Receiver].ReceiveMessage(message);
                 }
                 catch
                 {
-                    //interrupt when sending message
-                    //or user is disconnect
+                    Console.WriteLine("Cant find user online to send message");
+                    _onlineUsers.Remove(message.Receiver);
                 }
                 if (isReceived)
                 {
@@ -562,11 +577,12 @@ namespace ServerLibrary
             {
                 //cur User is offline
             }
-
+            Console.WriteLine("exit SendMessage service");
         }
 
         public List<DataMessage> GetUnreceivedMessages(string username)
         {
+            Console.WriteLine("Call getUnreceivedMessages. params: username = " + username);
             List<DataMessage> UnreceivedMessages;
             User curUser = _allUsers.Find(x => x.Username == username);
             lock (_synNotReceivedMessage)
@@ -578,11 +594,13 @@ namespace ServerLibrary
                     _notReceivedMessages.Remove(message);
                 }
             }
+            Console.WriteLine("exit GetUnreceivedMessages");
             return UnreceivedMessages;
         }
 
         public bool UpdateInformation(User user)
         {
+            Console.WriteLine("Call UpdateInformation");
             bool res = false;
             User curUser;
             lock (_synObj)
@@ -602,12 +620,13 @@ namespace ServerLibrary
                     }
                 }
             }
-
+            Console.WriteLine("Exit UpdateInformation");
             return res;
         }
 
         public bool UpdatePassword(string username, string oldPass, string newPass)
         {
+            Console.WriteLine("Call updatePassword");
             bool res = false;
             string query = "UPDATE users " +
                 "SET password = @pass " +
@@ -624,11 +643,13 @@ namespace ServerLibrary
 
                 res = command.ExecuteNonQuery() == 1;
             }
+            Console.WriteLine("Exit Update Password");
             return res;
         }
 
         public bool UpdateAvatar(string username, DataFile newAvatar)
         {
+            Console.WriteLine("Call updateAvatar");
             bool res = false;
             int wildcardPos = newAvatar.FileName.LastIndexOf('.');
             string filename = username + newAvatar.FileName.Substring(wildcardPos);
@@ -655,12 +676,13 @@ namespace ServerLibrary
                         _onlineUsers[node.User].FriendChangeAvatar(curUser);
                 }
             }
-
+            Console.WriteLine("exit update avatar");
             return res;
         }
 
         public void Writting(User writer, User waiter)
         {
+            Console.WriteLine("Call Writting");
             lock (_synObj)
             {
                 if (_onlineUsers.ContainsKey(waiter))
@@ -668,10 +690,12 @@ namespace ServerLibrary
                     _onlineUsers[waiter].FriendIsWrittingMessage(writer);
                 }
             }
+            Console.WriteLine("Exit Writting");
         }
 
         public void SendFriendRequest(string sender, string stranger)
         {
+            Console.WriteLine("call SendFriendRequest");
             lock (_synObj)
             {
                 User senderUser = _allUsers.Find(x => x.Username == sender);
@@ -681,10 +705,12 @@ namespace ServerLibrary
                 if (_onlineUsers.ContainsKey(strangerUser))
                     _onlineUsers[strangerUser].ReceiveMakeFriendRequest(senderUser);
             }
+            Console.WriteLine("Exit SendFriendRequest");
         }
 
         public List<User> GetPendingFriendRequests(User user)
         {
+            Console.WriteLine("Call getpendingFriendRequests");
             List<User> res = new List<User>();
             lock (_synObj)
             {
@@ -693,11 +719,13 @@ namespace ServerLibrary
                     res.Add(node.User);
                 }
             }
+            Console.WriteLine("exit getPendingFriendRequests");
             return res;
         }
 
         public void AcceptFriendRequest(User foo, User bar)
         {
+            Console.WriteLine("call AcceptFriendRequest");
             lock (_synObj)
             {
                 _relationship[foo].SentPendingRequest.Remove(_relationship[bar]);
@@ -708,10 +736,12 @@ namespace ServerLibrary
                 _onlineUsers[foo].GotANewFriend();
             if (_onlineUsers.ContainsKey(bar))
                 _onlineUsers[bar].GotANewFriend();
+            Console.WriteLine("exit AcceptFriendRequest");
         }
 
         public List<User> GetSentFriendRequest(User user)
         {
+            Console.WriteLine("call getSEntFriendRequest");
             List<User> res = new List<User>();
             lock (_synObj)
             {
@@ -720,11 +750,13 @@ namespace ServerLibrary
                     res.Add(node.User);
                 }
             }
+            Console.WriteLine("exit getSentFriendRequest");
             return res;
         }
 
         public User GetUserInformation(string username)
         {
+            Console.WriteLine("Call GetUserInformation");
             User res = null;
             string query = "SELECT * FROM Users WHERE username = @username";
             using (SqlConnection connection = new SqlConnection(_strConnection))
@@ -744,13 +776,15 @@ namespace ServerLibrary
                     };
                 }
             }
-
+            Console.WriteLine("Exit GetUserInformation");
             return res;
         }
 
         public void Logout(User user)
         {
+            Console.WriteLine("Call logout");
             RemoveUserOnline(user.Username);
+            Console.WriteLine("Exit logout");
         }
 
 

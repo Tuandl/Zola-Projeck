@@ -39,7 +39,7 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Right"
-                        Source="{Binding AvatarUrl}"/>
+                        Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Right">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Right"
                                Margin="10"/>
@@ -50,7 +50,7 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Left"
-                        Source="{Binding AvatarUrl}"/>
+                        Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Left">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Left"
                                Margin="10"/>
@@ -86,28 +86,36 @@
             </DockPanel>
         </DockPanel>
 
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Height="112" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Image Name="imgCurFriend" Source="Resources/img/avatar-default.png" Margin="20 10"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <TextBlock Name="txtblNameCurFriend" Margin="10" FontSize="20" FontWeight="Bold">Tên</TextBlock>
-                    <TextBlock Name="txtblUsernameCurFriend" Margin="10" FontSize="15" FontStyle="Italic">Username</TextBlock>
-                </StackPanel>
+        <DockPanel Name="pnMainDisplay">
+            <StackPanel Name="pnInit" Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Margin="0 200" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold">Hello <TextBlock Name="txtblCurUserName2"></TextBlock></TextBlock>
             </StackPanel>
-            <DockPanel>
-                <DockPanel DockPanel.Dock="Bottom" Height="42" >
-                    <Button Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"></Button>
-                    <TextBox Name="txtMessageToSend"></TextBox>
+            <DockPanel Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
+                       Name="pnChat" DockPanel.Dock="Top" Visibility="Collapsed">
+                <StackPanel DockPanel.Dock="Top" Height="112" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Image Name="imgCurFriend" Source="Resources/img/avatar-default.png" Margin="20 10"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Name="txtblNameCurFriend" Margin="10" FontSize="20" FontWeight="Bold">Tên</TextBlock>
+                        <TextBlock Name="txtblUsernameCurFriend" Margin="10" FontSize="15" FontStyle="Italic">Username</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom" Height="42" >
+                        <Button Click="btnSendMessage_Click" Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"></Button>
+                        <TextBox Name="txtMessageToSend" KeyUp="txtMessageToSend_KeyUp" TextChanged="txtMessageToSend_TextChanged"></TextBox>
+                    </DockPanel>
+                    <TextBlock Name="txtblIsWritting" DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3"></TextBlock>
+                    <ListView Name="lvChatMessages" BorderBrush="SeaGreen">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </DockPanel>
-                <TextBlock DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3">ABC is writting</TextBlock>
-                <ListView Name="lvChatMessages" BorderBrush="SeaGreen">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
             </DockPanel>
         </DockPanel>
+
     </DockPanel>
 </Window>

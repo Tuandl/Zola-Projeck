@@ -51,13 +51,13 @@ namespace ZolaClient
                 {
                     MessageBox.Show("Login Fail");
                 }
-                App.Disconnect();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             } finally
             {
+                App.Disconnect();
                 if(chatWindow != null)
                 {
                     chatWindow.Hide();

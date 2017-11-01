@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CallbackObject.cs" />
+    <Compile Include="Dialogs\FindStranger.xaml.cs">
+      <DependentUpon>FindStranger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UpdateInformation.xaml.cs">
       <DependentUpon>UpdateInformation.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,10 @@
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\FindStranger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\UpdateInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
