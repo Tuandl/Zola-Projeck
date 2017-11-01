@@ -30,6 +30,8 @@ namespace ZolaClient
         private List<ZolaService.User> _friends = null;
         private ObservableCollection<ListViewItem> _displayFriends = null;
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace ZolaClient
         private void InitUser()
         {
             txtblCurUserName.Text = _curUser.Name;
-            AvatarHelper.LoadAvatar(imgCurUserAvatar, _curUser.Username);
+            AvatarHelper.LoadAvatarFromServer(imgCurUserAvatar, _curUser.Username);
         }
 
         private void InitFriends()
@@ -97,27 +99,6 @@ namespace ZolaClient
                 findFriendAvatar.RunWorkerAsync(friend.Username);
             }
         }
-
-        #region Load Friend Avatar worker
-        private void FindFriendAvatar_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ZolaService.DataFile avatar = null;
-            string username = e.Argument.ToString();
-            if (App.Proxy.IsUserHasAvatar(username))
-            {
-                avatar = App.Proxy.GetAvatarFile(username);
-                AvatarHelper.SaveAvatar(username, avatar);
-            }
-            e.Result = username;
-        }
-
-        private void FindFriendAvatar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            string username = e.Result.ToString();
-            DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
-            user.AvatarUrl = AvatarHelper.GetAvatarPath(username);
-        }
-        #endregion
 
 
         private void TestTemplate()
@@ -202,14 +183,22 @@ namespace ZolaClient
         {
             InitFriends();
         }
+
         public bool ReceiveMessage(DataMessage message)
         {
             throw new NotImplementedException();
         }
+
         public void FriendChangeAvatar(User friend)
         {
-            throw new NotImplementedException();
+            BackgroundWorker findFriendAvatar = new BackgroundWorker();
+            findFriendAvatar.WorkerReportsProgress = false;
+            findFriendAvatar.WorkerSupportsCancellation = true;
+            findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
+            findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
+            findFriendAvatar.RunWorkerAsync(friend.Username);
         }
+
         public void FriendIsWrittingMessage(User Friend)
         {
             throw new NotImplementedException();
@@ -305,12 +294,42 @@ namespace ZolaClient
         }
         #endregion
 
+        #region Load Friend Avatar worker
+        private void FindFriendAvatar_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ZolaService.DataFile avatar = null;
+            string username = e.Argument.ToString();
+            if (App.Proxy.IsUserHasAvatar(username))
+            {
+                avatar = App.Proxy.GetAvatarFile(username);
+                AvatarHelper.SaveAvatar(username, avatar);
+            }
+            e.Result = username;
+        }
+
+        private void FindFriendAvatar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            string username = e.Result.ToString();
+            DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
+            user.AvatarUrl = null;
+            user.AvatarUrl = AvatarHelper.GetAvatarPath(username);
+        }
+        #endregion
+
         #region Even Process
         private void btnUpdateInformation_Click(object sender, RoutedEventArgs e)
         {
             Dialogs.UpdateInformation updateInformationDialog = new Dialogs.UpdateInformation(_curUser);
             //this.Hide();
-            updateInformationDialog.ShowDialog();
+            try
+            {
+                updateInformationDialog.ShowDialog();
+                InitUser();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             updateInformationDialog.Close();
             //this.Show();
         }
@@ -329,11 +348,28 @@ namespace ZolaClient
             this._displayFriends = null;
         }
 
+        /// <summary>
+        /// Select cur chat user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lvFriends_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)(sender as ListView).SelectedItem;
+            if (item != null)
+            {
+                DisplayUser user = item.Content as DisplayUser;
+                txtblNameCurFriend.Text = user.Name;
+                txtblUsernameCurFriend.Text = user.Username;
+                AvatarHelper.LoadAvatarFromLocal(imgCurFriend, user.Username);
+            }
+        }
         #endregion
 
     }
 
     #region Display Classed
+
     class DisplayUser : INotifyPropertyChanged
     {
         private string _avatarUrl;
@@ -387,10 +423,43 @@ namespace ZolaClient
         }
     }
 
-    class DisplayMessage
+    class DisplayMessage : INotifyPropertyChanged
     {
-        public string AvatarUrl { get; set; }
-        public string MessageContent { get; set; }
+        private string _avatarUrl;
+        private string _content;
+
+        public string AvatarUrl
+        {
+            get { return _avatarUrl; }
+            set
+            {
+                if (_avatarUrl != value)
+                {
+                    _avatarUrl = value;
+                    NotifyPropertyChanged("AvatarUrl");
+                }
+            }
+        }
+        public string MessageContent
+        {
+            get { return _content; }
+            set
+            {
+                if (value != _content)
+                {
+                    _content = value;
+                    NotifyPropertyChanged("MessageContent");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
     }
 
     #endregion

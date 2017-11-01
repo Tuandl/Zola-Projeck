@@ -27,3 +27,4 @@ C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Zo
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.pdb
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.pdb
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csprojResolveAssemblyReference.cache

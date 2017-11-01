@@ -81,7 +81,7 @@
                 </StackPanel>
                 <!--contents-->
                 <DockPanel>
-                    <ListView Name="lvFriends" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
+                    <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
                 </DockPanel>
             </DockPanel>
         </DockPanel>

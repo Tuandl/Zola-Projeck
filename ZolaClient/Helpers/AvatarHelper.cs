@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Cache;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -108,18 +109,61 @@ namespace ZolaClient.Helpers
                 {
                     ZolaService.DataFile avatarFile = App.Proxy.GetAvatarFile(username);
                     AvatarHelper.SaveAvatar(username, avatarFile);
-                    BitmapImage img = new BitmapImage();
-                    img.BeginInit();
-                    img.UriSource = new Uri(AvatarHelper.GetAvatarPath(username), UriKind.Absolute);
-                    img.CacheOption = BitmapCacheOption.OnLoad;
-                    img.EndInit();
-                    imgControl.Source = img;
+                    imgControl.Source = CreateBitMapFromPath(AvatarHelper.GetAvatarPath(username));
                 }
             }
             else
             {
-                imgControl.Source = new BitmapImage(new Uri(AvatarHelper.GetAvatarPath(username), UriKind.Absolute));
+                imgControl.Source = CreateBitMapFromPath(AvatarHelper.GetAvatarPath(username));
             }
+        }
+
+        /// <summary>
+        /// Load Avatar from server for specific user
+        /// Then assign source for Image Control
+        /// </summary>
+        /// <param name="imgControl"></param>
+        /// <param name="username"></param>
+        public static void LoadAvatarFromServer(Image imgControl, string username)
+        {
+            if (App.Proxy.IsUserHasAvatar(username))
+            {
+                ZolaService.DataFile avatarFile = App.Proxy.GetAvatarFile(username);
+                AvatarHelper.SaveAvatar(username, avatarFile);
+                imgControl.Source = CreateBitMapFromPath(AvatarHelper.GetAvatarPath(username));
+            }
+        }
+
+        /// <summary>
+        /// Load Avatar from file in user machine
+        /// </summary>
+        /// <param name="imageControl"></param>
+        /// <param name="username"></param>
+        public static void LoadAvatarFromLocal(Image imageControl, string username)
+        {
+            string avatarPath = AvatarHelper.GetAvatarPath(username);
+            if(avatarPath != null)
+            {
+                imageControl.Source = CreateBitMapFromPath(avatarPath);
+            }
+        }
+
+        /// <summary>
+        /// Create Bitmap From Absolute path for binding source Image control
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static BitmapImage CreateBitMapFromPath(string path)
+        {
+            BitmapImage img = new BitmapImage();
+            img.BeginInit();
+            img.CacheOption = BitmapCacheOption.None;
+            img.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            img.CacheOption = BitmapCacheOption.OnLoad;
+            img.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            img.UriSource = new Uri(path, UriKind.Absolute);
+            img.EndInit();
+            return img;
         }
     }
 }

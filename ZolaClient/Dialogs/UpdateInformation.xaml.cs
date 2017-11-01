@@ -119,7 +119,12 @@ namespace ZolaClient.Dialogs
             if (openFile.ShowDialog() == true)
             {
                 string imgUrl = openFile.FileName;
-                imgAvatar.Source = new BitmapImage(new Uri(imgUrl, UriKind.Absolute));
+                BitmapImage img = new BitmapImage();
+                img.BeginInit();
+                img.UriSource = new Uri(imgUrl, UriKind.Absolute);
+                img.CacheOption = BitmapCacheOption.OnLoad;
+                img.EndInit();
+                imgAvatar.Source = img;
                 btnUpdateImage.IsEnabled = true;
             }
         }
