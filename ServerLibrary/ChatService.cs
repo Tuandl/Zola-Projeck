@@ -518,11 +518,28 @@ namespace ServerLibrary
                     User curUser = _allUsers.Find(x => x.Username == curUsername);
                     foreach (User user in _allUsers)
                     {
-                        if (!user.Username.Contains(strangerUsername)) continue;
+                        if (!user.Username.Contains(strangerUsername) || 
+                            user == curUser) continue;
                         bool isStranger = true;
                         foreach (NodeRelationship node in _relationship[curUser].Friends)
                         {
                             if (node.User == user)
+                            {
+                                isStranger = false;
+                                break;
+                            }
+                        }
+                        foreach (NodeRelationship node in _relationship[curUser].ReceivedPendingRequest)
+                        {
+                            if (node.User == user || !isStranger)
+                            {
+                                isStranger = false;
+                                break;
+                            }
+                        }
+                        foreach (NodeRelationship node in _relationship[curUser].SentPendingRequest)
+                        {
+                            if (node.User == user || !isStranger)
                             {
                                 isStranger = false;
                                 break;

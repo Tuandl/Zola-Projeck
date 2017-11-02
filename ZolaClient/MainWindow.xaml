@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZolaClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="673.03" Width="1042.941"
+        Icon="/Resources/img/zola-icon.png"
+        Title="Zola" Height="673.03" Width="1042.941"
         WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Window.Resources>
         <local:StringToImageConverter x:Key="StringToImageConverter" />
@@ -71,17 +72,27 @@
                 <StackPanel Margin="10 0 0 0">
                     <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"></TextBlock></TextBlock>
                     <Button Name="btnUpdateInformation" Click="btnUpdateInformation_Click">Update Information</Button>
-                    <Button Margin="0 5 0 0">Find Stranger</Button>
+                    <Button Name="btnFindStranger" Click="btnFindStranger_Click" Margin="0 5 0 0">Explore Friends</Button>
                 </StackPanel>
             </DockPanel>
             <DockPanel Margin="0 10 0 0">
                 <!--search-->
                 <StackPanel DockPanel.Dock="Top">
-                    <TextBox Name="txtSearchStranger" TextChanged="txtSearchStranger_TextChanged"/>
+                    <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged"/>
                 </StackPanel>
                 <!--contents-->
                 <DockPanel>
-                    <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
+                    <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch">
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </DockPanel>

@@ -17,6 +17,7 @@ using System.ServiceModel;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using ZolaClient.Dialogs;
 
 namespace ZolaClient
 {
@@ -27,7 +28,7 @@ namespace ZolaClient
     public partial class MainWindow : Window, ZolaService.IChatServiceCallback
     {
         private ZolaService.User _curUser = null;
-        private List<ZolaService.User> _friends = null;
+        private List<ZolaService.User> _friends = new List<User>();
         private ObservableCollection<ListViewItem> _displayFriends = null;
 
         private Dictionary<string, ObservableCollection<ListViewItem>> _displayMessages = new Dictionary<string, ObservableCollection<ListViewItem>>();
@@ -35,6 +36,7 @@ namespace ZolaClient
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         public void Init(ZolaService.User user)
@@ -55,24 +57,26 @@ namespace ZolaClient
             AvatarHelper.LoadAvatarFromServer(imgCurUserAvatar, _curUser.Username);
         }
 
+        /// <summary>
+        /// Get Friend list, sent request list, reveiced request list
+        /// </summary>
         private void InitFriends()
         {
             _displayFriends = new ObservableCollection<ListViewItem>();
-            _friends = App.Proxy.GetFriends(_curUser.Username);
-            foreach (ZolaService.User friend in _friends)
+            _friends.Clear();
+            List<ZolaService.User> tmp;
+            //Get Friend List
+            tmp = App.Proxy.GetFriends(_curUser.Username);
+            foreach (ZolaService.User friend in tmp)
             {
                 DisplayUser user = new DisplayUser()
                 {
                     AvatarUrl = AvatarHelper.DefaultAvatarPath,
                     Name = friend.Name,
                     Username = friend.Username,
-                    IsOnline = friend.IsOnline
+                    IsOnline = friend.IsOnline,
+                    UserType = UserType.Friends
                 };
-                //string avatarPath = AvatarHelper.GetAvatarPath(friend.Username);
-                //if (avatarPath != null)
-                //{
-                //    user.AvatarUrl = avatarPath;
-                //}
                 ListViewItem item = new ListViewItem();
                 item.Content = user;
                 if (user.IsOnline)
@@ -86,7 +90,67 @@ namespace ZolaClient
 
                 _displayFriends.Add(item);
             }
+            _friends.AddRange(tmp);
+
+            //Get Received Friend request List
+            tmp = App.Proxy.GetPendingFriendRequests(_curUser);
+            foreach (ZolaService.User friend in tmp)
+            {
+                DisplayUser user = new DisplayUser()
+                {
+                    AvatarUrl = AvatarHelper.DefaultAvatarPath,
+                    Name = friend.Name,
+                    Username = friend.Username,
+                    IsOnline = friend.IsOnline,
+                    UserType = UserType.Requests
+                };
+                ListViewItem item = new ListViewItem();
+                item.Content = user;
+                if (user.IsOnline)
+                {
+                    item.ContentTemplate = (DataTemplate)this.FindResource("OnlineTemplate");
+                }
+                else
+                {
+                    item.ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate");
+                }
+                _displayFriends.Add(item);
+            }
+            _friends.AddRange(tmp);
+
+            //Get Pending Friend Request
+            tmp = App.Proxy.GetSentFriendRequest(_curUser);
+            foreach (ZolaService.User friend in tmp)
+            {
+                DisplayUser user = new DisplayUser()
+                {
+                    AvatarUrl = AvatarHelper.DefaultAvatarPath,
+                    Name = friend.Name,
+                    Username = friend.Username,
+                    IsOnline = friend.IsOnline,
+                    UserType = UserType.Pendings
+                };
+                ListViewItem item = new ListViewItem();
+                item.Content = user;
+                if (user.IsOnline)
+                {
+                    item.ContentTemplate = (DataTemplate)this.FindResource("OnlineTemplate");
+                }
+                else
+                {
+                    item.ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate");
+                }
+
+                _displayFriends.Add(item);
+            }
+            _friends.AddRange(tmp);
+
             lvFriends.ItemsSource = _displayFriends;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFriends.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Content.UserType");
+            view.GroupDescriptions.Add(groupDescription);
+            view.Filter = FriendNameFilter;
+            txtFilter.Text = "";
         }
 
         private void InitFriendsAvatar()
@@ -177,6 +241,18 @@ namespace ZolaClient
             lvChatMessages.ItemsSource = messages;
         }
 
+        /// <summary>
+        /// Filter for searching Friend Name
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private bool FriendNameFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return (((item as ListViewItem).Content as DisplayUser).Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
         #endregion
 
         #region Callback methods
@@ -343,8 +419,12 @@ namespace ZolaClient
             string username = e.Result.ToString();
             DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
             user.AvatarUrl = null;
-            user.AvatarUrl = AvatarHelper.GetAvatarPath(username);
-
+            string avatarPath = AvatarHelper.GetAvatarPath(username);
+            if(avatarPath == null)
+            {
+                avatarPath = AvatarHelper.DefaultAvatarPath;
+            }
+            user.AvatarUrl = avatarPath;
         }
         #endregion
 
@@ -404,9 +484,9 @@ namespace ZolaClient
             //this.Show();
         }
 
-        private void txtSearchStranger_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            CollectionViewSource.GetDefaultView(lvFriends.ItemsSource).Refresh();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -427,15 +507,31 @@ namespace ZolaClient
         /// <param name="e"></param>
         private void lvFriends_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if(pnChat.Visibility == Visibility.Collapsed)
-            {
-                CollapseAllPanels();
-                pnChat.Visibility = Visibility.Visible;
-            }
             ListViewItem item = (ListViewItem)(sender as ListView).SelectedItem;
             if (item != null)
             {
                 DisplayUser user = item.Content as DisplayUser;
+                switch (user.UserType)
+                {
+                    case UserType.Friends:
+                        if (user.UserType == UserType.Friends)
+                        {
+                            if (pnChat.Visibility == Visibility.Collapsed)
+                            {
+                                CollapseAllPanels();
+                                pnChat.Visibility = Visibility.Visible;
+                            }
+                        }
+                        break;
+                    case UserType.Pendings:
+                        CollapseAllPanels();
+                        break;
+                    case UserType.Requests:
+                        CollapseAllPanels();
+                        break;
+                }
+                
+
                 txtblNameCurFriend.Text = user.Name;
                 txtblUsernameCurFriend.Text = user.Username;
                 AvatarHelper.LoadAvatarFromLocal(imgCurFriend, user.Username);
@@ -484,6 +580,12 @@ namespace ZolaClient
             //    App.Proxy.Writting(_curUser, _friends.ToList().Find(x => x.Username == txtblUsernameCurFriend.Text));
             //}
         }
+
+        private void btnFindStranger_Click(object sender, RoutedEventArgs e)
+        {
+            FindStranger findStrangerDialog = new FindStranger(_curUser);
+            findStrangerDialog.ShowDialog();
+        }
         #endregion
     }
 
@@ -494,6 +596,7 @@ namespace ZolaClient
         private string _avatarUrl;
         private string _name;
         private string _username;
+        private UserType _userType;
 
         public string AvatarUrl
         {
@@ -531,6 +634,18 @@ namespace ZolaClient
                 }
             }
         }
+        public UserType UserType
+        {
+            get { return this._userType; }
+            set
+            {
+                if (value != this._userType)
+                {
+                    this._userType = value;
+                    NotifyPropertyChanged("UserType");
+                }
+            }
+        }
         public bool IsOnline { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -541,6 +656,8 @@ namespace ZolaClient
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
+
+    enum UserType { Friends, Pendings, Requests }
 
     class DisplayMessage : INotifyPropertyChanged
     {

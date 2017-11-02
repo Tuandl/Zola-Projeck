@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZolaClient.Dialogs"
         mc:Ignorable="d"
-        Title="FindStranger" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Icon="/Resources/img/zola-icon.png"
+        Title="Explore Friends" Height="562.7" Width="300">
+    <Window.Resources>
+        <local:StringToImageConverter x:Key="StringToImageConverter"/>
+        <DataTemplate x:Key="StrangerItem">
+            <DockPanel Margin="3">
+                <Image DockPanel.Dock="Left" Width="70" Height="70"
+                    Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
+                <StackPanel Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Username}"/>
+                    <TextBlock Text="{Binding Name}"/>
+                    <Button Click="Button_Click">Send Friend Request</Button>
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="5">
+            <TextBlock DockPanel.Dock="Left">Username: </TextBlock>
+            <TextBox TextChanged="txtStrangerUsername_TextChanged" Name="txtStrangerUsername" Margin="5 0 0 0"></TextBox>
+        </DockPanel>
+        <ListView Name="lvStrangers"></ListView>
+    </DockPanel>
 </Window>

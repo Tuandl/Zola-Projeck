@@ -1,9 +1,12 @@
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.exe
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\Resources\img\zola-logo.png
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\Resources\img\register-now.png
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\Resources\img\zola-icon.png
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\Resources\img\avatar-default.png
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\Resources\img\register-now.png
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.exe.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csprojResolveAssemblyReference.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\FindStranger.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\UpdateInformation.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\IpConfig.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Login.g.cs
@@ -11,9 +14,11 @@ C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Ma
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Register.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\App.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient_Content.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient_MarkupCompile.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient_MarkupCompile.lref
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\App.baml
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\FindStranger.baml
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\UpdateInformation.baml
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\IpConfig.baml
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Login.baml
@@ -25,8 +30,3 @@ C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Zo
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csproj.CoreCompileInputs.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.exe
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.pdb
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\bin\Debug\ZolaClient.pdb
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csprojResolveAssemblyReference.cache
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\FindStranger.g.cs
-C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Dialogs\FindStranger.baml
