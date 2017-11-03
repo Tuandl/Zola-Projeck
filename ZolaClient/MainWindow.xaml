@@ -59,18 +59,19 @@
             </DockPanel>
         </DataTemplate>
     </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="btnFindStranger"/>
+    </Window.Triggers>
 
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top">
-
-        </DockPanel>
+        <DockPanel DockPanel.Dock="Top"/>
         <DockPanel DockPanel.Dock="Left" Width="229">
             <DockPanel DockPanel.Dock="Top" Margin="5">
                 <Image Name="imgCurUserAvatar" Source="Resources/img/avatar-default.png"
                    Width="75" Height="75"
                    DockPanel.Dock="Left"/>
                 <StackPanel Margin="10 0 0 0">
-                    <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"></TextBlock></TextBlock>
+                    <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"/></TextBlock>
                     <Button Name="btnUpdateInformation" Click="btnUpdateInformation_Click">Update Information</Button>
                     <Button Name="btnFindStranger" Click="btnFindStranger_Click" Margin="0 5 0 0">Explore Friends</Button>
                 </StackPanel>
@@ -99,8 +100,8 @@
 
         <DockPanel Name="pnMainDisplay">
             <StackPanel Name="pnInit" Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
-                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Margin="0 200" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold">Hello <TextBlock Name="txtblCurUserName2"></TextBlock></TextBlock>
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                <TextBlock Margin="0 200" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold">Hello <TextBlock Name="txtblCurUserName2"/></TextBlock>
             </StackPanel>
             <DockPanel Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
                        Name="pnChat" DockPanel.Dock="Top" Visibility="Collapsed">
@@ -113,10 +114,10 @@
                 </StackPanel>
                 <DockPanel>
                     <DockPanel DockPanel.Dock="Bottom" Height="42" >
-                        <Button Click="btnSendMessage_Click" Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"></Button>
-                        <TextBox Name="txtMessageToSend" KeyUp="txtMessageToSend_KeyUp" TextChanged="txtMessageToSend_TextChanged"></TextBox>
+                        <Button Click="btnSendMessage_Click" Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"/>
+                        <TextBox Name="txtMessageToSend" KeyUp="txtMessageToSend_KeyUp" TextChanged="txtMessageToSend_TextChanged"/>
                     </DockPanel>
-                    <TextBlock Name="txtblIsWritting" DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3"></TextBlock>
+                    <TextBlock Name="txtblIsWritting" DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3"/>
                     <ListView Name="lvChatMessages" BorderBrush="SeaGreen">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -126,6 +127,48 @@
                     </ListView>
                 </DockPanel>
             </DockPanel>
+            <WrapPanel Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
+                        Name="pnSentRequest" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                <TextBlock FontWeight="Bold" FontSize="40"
+                           Margin="0 170"
+                           Width="{Binding ElementName=pnSentRequest, Path=ActualWidth}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center">Your request is pending...</TextBlock>
+            </WrapPanel>
+            <StackPanel Width="{Binding ElementName=pnMainDisplay, Path=ActualWidth}"
+                        Height="{Binding ElementName=pnMainDisplay, Path=ActualHeight}"
+                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Name="pnReceiveRequest">
+                <DockPanel Margin="45">
+                    <Image DockPanel.Dock="Top" Source="Resources/img/avatar-default.png"
+                           Width="200" Height="200"
+                           Name="imgRequestFriend"/>
+                    <StackPanel Margin="50">
+                        <TextBlock TextAlignment="Center"
+                                   FontSize="40"
+                                   FontStyle="Italic"
+                                   Name="txtblRequestName">Tuấn đập chai</TextBlock>
+                        <TextBlock TextAlignment="Center"
+                                   FontSize="20"
+                                   FontStyle="Italic"
+                                   Name="txtblRequestUsername"
+                                   Margin="10">tuan</TextBlock>
+                        <TextBlock TextAlignment="Center"
+                                   FontSize="30"
+                                   FontStyle="Italic"
+                                   Name="txtblRequestGender">Male</TextBlock>
+                        <Button Name="btnAccept"
+                                Margin="30"
+                                Width="150" Click="btnAccept_Click" Background="#FFB5EAEA" BorderThickness="2">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="14" Color="#FF1D2283" Direction="300" ShadowDepth="4"/>
+                            </Button.Effect>
+                            <TextBlock FontSize="30">Accept</TextBlock>
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
         </DockPanel>
 
     </DockPanel>

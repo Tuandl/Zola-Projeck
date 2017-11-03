@@ -710,6 +710,19 @@ namespace ServerLibrary
             Console.WriteLine("Exit Writting");
         }
 
+        public void StopWritting(User writer, User friend)
+        {
+            Console.WriteLine("Call Stop Writting");
+            lock (_synObj)
+            {
+                if (_onlineUsers.ContainsKey(friend))
+                {
+                    _onlineUsers[friend].FriendStopWrittingMessage(writer);
+                }
+            }
+            Console.WriteLine("Exit Stop Writting");
+        }
+
         public void SendFriendRequest(string sender, string stranger)
         {
             Console.WriteLine("call SendFriendRequest");
@@ -721,6 +734,8 @@ namespace ServerLibrary
                 InsertPendingRequestIntoDatabase(sender, stranger);
                 if (_onlineUsers.ContainsKey(strangerUser))
                     _onlineUsers[strangerUser].ReceiveMakeFriendRequest(senderUser);
+                if (_onlineUsers.ContainsKey(senderUser))
+                    _onlineUsers[senderUser].SentMakeFriendRequest(strangerUser);
             }
             Console.WriteLine("Exit SendFriendRequest");
         }
@@ -743,16 +758,20 @@ namespace ServerLibrary
         public void AcceptFriendRequest(User foo, User bar)
         {
             Console.WriteLine("call AcceptFriendRequest");
+            foo = _allUsers.Find(x => x.Username == foo.Username);
+            bar = _allUsers.Find(x => x.Username == bar.Username);
             lock (_synObj)
             {
                 _relationship[foo].SentPendingRequest.Remove(_relationship[bar]);
                 _relationship[bar].ReceivedPendingRequest.Remove(_relationship[foo]);
+                _relationship[foo].Friends.Add(_relationship[bar]);
+                _relationship[bar].Friends.Add(_relationship[foo]);
                 UpdateFriendshipIntoDatabase(foo.Username, bar.Username);
             }
             if (_onlineUsers.ContainsKey(foo))
-                _onlineUsers[foo].GotANewFriend();
+                _onlineUsers[foo].GotANewFriend(bar);
             if (_onlineUsers.ContainsKey(bar))
-                _onlineUsers[bar].GotANewFriend();
+                _onlineUsers[bar].GotANewFriend(foo);
             Console.WriteLine("exit AcceptFriendRequest");
         }
 
@@ -803,6 +822,7 @@ namespace ServerLibrary
             RemoveUserOnline(user.Username);
             Console.WriteLine("Exit logout");
         }
+
 
 
         #endregion

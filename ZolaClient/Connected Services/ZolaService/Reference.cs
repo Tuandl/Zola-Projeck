@@ -384,6 +384,14 @@ namespace ZolaClient.ZolaService {
         
         void EndWritting(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/StopWritting")]
+        void StopWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/StopWritting")]
+        System.IAsyncResult BeginStopWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend, System.AsyncCallback callback, object asyncState);
+        
+        void EndStopWritting(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendFriendRequest")]
         void SendFriendRequest(string sender, string stranger);
         
@@ -476,6 +484,14 @@ namespace ZolaClient.ZolaService {
         
         void EndFriendIsWrittingMessage(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/FriendStopWrittingMessage")]
+        void FriendStopWrittingMessage(ZolaClient.ZolaService.User Friend);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/FriendStopWrittingMessage")]
+        System.IAsyncResult BeginFriendStopWrittingMessage(ZolaClient.ZolaService.User Friend, System.AsyncCallback callback, object asyncState);
+        
+        void EndFriendStopWrittingMessage(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/ReceiveMakeFriendRequest")]
         void ReceiveMakeFriendRequest(ZolaClient.ZolaService.User stranger);
         
@@ -485,12 +501,20 @@ namespace ZolaClient.ZolaService {
         void EndReceiveMakeFriendRequest(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/GotANewFriend")]
-        void GotANewFriend();
+        void GotANewFriend(ZolaClient.ZolaService.User newFriend);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/GotANewFriend")]
-        System.IAsyncResult BeginGotANewFriend(System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGotANewFriend(ZolaClient.ZolaService.User newFriend, System.AsyncCallback callback, object asyncState);
         
         void EndGotANewFriend(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SentMakeFriendRequest")]
+        void SentMakeFriendRequest(ZolaClient.ZolaService.User stranger);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IChatService/SentMakeFriendRequest")]
+        System.IAsyncResult BeginSentMakeFriendRequest(ZolaClient.ZolaService.User stranger, System.AsyncCallback callback, object asyncState);
+        
+        void EndSentMakeFriendRequest(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -826,6 +850,12 @@ namespace ZolaClient.ZolaService {
         
         private System.Threading.SendOrPostCallback onWrittingCompletedDelegate;
         
+        private BeginOperationDelegate onBeginStopWrittingDelegate;
+        
+        private EndOperationDelegate onEndStopWrittingDelegate;
+        
+        private System.Threading.SendOrPostCallback onStopWrittingCompletedDelegate;
+        
         private BeginOperationDelegate onBeginSendFriendRequestDelegate;
         
         private EndOperationDelegate onEndSendFriendRequestDelegate;
@@ -901,6 +931,8 @@ namespace ZolaClient.ZolaService {
         public event System.EventHandler<UpdateAvatarCompletedEventArgs> UpdateAvatarCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> WrittingCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StopWrittingCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendFriendRequestCompleted;
         
@@ -1574,6 +1606,57 @@ namespace ZolaClient.ZolaService {
             base.InvokeAsync(this.onBeginWrittingDelegate, new object[] {
                         writer,
                         waiter}, this.onEndWrittingDelegate, this.onWrittingCompletedDelegate, userState);
+        }
+        
+        public void StopWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend) {
+            base.Channel.StopWritting(writer, friend);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginStopWritting(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStopWritting(writer, friend, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndStopWritting(System.IAsyncResult result) {
+            base.Channel.EndStopWritting(result);
+        }
+        
+        private System.IAsyncResult OnBeginStopWritting(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            ZolaClient.ZolaService.User writer = ((ZolaClient.ZolaService.User)(inValues[0]));
+            ZolaClient.ZolaService.User friend = ((ZolaClient.ZolaService.User)(inValues[1]));
+            return this.BeginStopWritting(writer, friend, callback, asyncState);
+        }
+        
+        private object[] OnEndStopWritting(System.IAsyncResult result) {
+            this.EndStopWritting(result);
+            return null;
+        }
+        
+        private void OnStopWrittingCompleted(object state) {
+            if ((this.StopWrittingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.StopWrittingCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void StopWrittingAsync(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend) {
+            this.StopWrittingAsync(writer, friend, null);
+        }
+        
+        public void StopWrittingAsync(ZolaClient.ZolaService.User writer, ZolaClient.ZolaService.User friend, object userState) {
+            if ((this.onBeginStopWrittingDelegate == null)) {
+                this.onBeginStopWrittingDelegate = new BeginOperationDelegate(this.OnBeginStopWritting);
+            }
+            if ((this.onEndStopWrittingDelegate == null)) {
+                this.onEndStopWrittingDelegate = new EndOperationDelegate(this.OnEndStopWritting);
+            }
+            if ((this.onStopWrittingCompletedDelegate == null)) {
+                this.onStopWrittingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnStopWrittingCompleted);
+            }
+            base.InvokeAsync(this.onBeginStopWrittingDelegate, new object[] {
+                        writer,
+                        friend}, this.onEndStopWrittingDelegate, this.onStopWrittingCompletedDelegate, userState);
         }
         
         public void SendFriendRequest(string sender, string stranger) {

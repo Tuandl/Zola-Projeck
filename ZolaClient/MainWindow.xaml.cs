@@ -30,13 +30,15 @@ namespace ZolaClient
         private ZolaService.User _curUser = null;
         private List<ZolaService.User> _friends = new List<User>();
         private ObservableCollection<ListViewItem> _displayFriends = null;
+        private bool isWritting = false;
 
         private Dictionary<string, ObservableCollection<ListViewItem>> _displayMessages = new Dictionary<string, ObservableCollection<ListViewItem>>();
 
         public MainWindow()
         {
             InitializeComponent();
-
+            CollapseAllPanels();
+            pnInit.Visibility = Visibility.Visible;
         }
 
         public void Init(ZolaService.User user)
@@ -66,6 +68,7 @@ namespace ZolaClient
             _friends.Clear();
             List<ZolaService.User> tmp;
             //Get Friend List
+            #region Get List Friend
             tmp = App.Proxy.GetFriends(_curUser.Username);
             foreach (ZolaService.User friend in tmp)
             {
@@ -91,8 +94,11 @@ namespace ZolaClient
                 _displayFriends.Add(item);
             }
             _friends.AddRange(tmp);
+            #endregion
+
 
             //Get Received Friend request List
+            #region get received friend request list
             tmp = App.Proxy.GetPendingFriendRequests(_curUser);
             foreach (ZolaService.User friend in tmp)
             {
@@ -117,8 +123,11 @@ namespace ZolaClient
                 _displayFriends.Add(item);
             }
             _friends.AddRange(tmp);
+            #endregion
+
 
             //Get Pending Friend Request
+            #region Get Pending Friend Request
             tmp = App.Proxy.GetSentFriendRequest(_curUser);
             foreach (ZolaService.User friend in tmp)
             {
@@ -144,6 +153,8 @@ namespace ZolaClient
                 _displayFriends.Add(item);
             }
             _friends.AddRange(tmp);
+            #endregion
+
 
             lvFriends.ItemsSource = _displayFriends;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFriends.ItemsSource);
@@ -153,25 +164,39 @@ namespace ZolaClient
             txtFilter.Text = "";
         }
 
+        /// <summary>
+        /// Reload All Friends' avatar from server
+        /// </summary>
         private void InitFriendsAvatar()
         {
             foreach (ZolaService.User friend in _friends)
             {
-                BackgroundWorker findFriendAvatar = new BackgroundWorker();
-                findFriendAvatar.WorkerReportsProgress = false;
-                findFriendAvatar.WorkerSupportsCancellation = true;
-                findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
-                findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
-                findFriendAvatar.RunWorkerAsync(friend.Username);
+                InitAFriendAvatar(friend.Username);
             }
         }
 
+        /// <summary>
+        /// Init a single friend's avatar
+        /// </summary>
+        /// <param name="friendUsername"></param>
+        private void InitAFriendAvatar(string friendUsername)
+        {
+            BackgroundWorker findFriendAvatar = new BackgroundWorker();
+            findFriendAvatar.WorkerReportsProgress = false;
+            findFriendAvatar.WorkerSupportsCancellation = true;
+            findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
+            findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
+            findFriendAvatar.RunWorkerAsync(friendUsername);
+        }
+
+        /// <summary>
+        /// Get All unreceived message
+        /// </summary>
         private void InitMessages()
         {
             for (int i = 0; i < _friends.Count; i++)
             {
                 _displayMessages[_friends[i].Username] = new ObservableCollection<ListViewItem>();
-
             }
             BackgroundWorker getMessageWorker = new BackgroundWorker();
             getMessageWorker.WorkerSupportsCancellation = false;
@@ -181,10 +206,16 @@ namespace ZolaClient
             getMessageWorker.RunWorkerAsync(_curUser.Username);
         }
 
+        /// <summary>
+        /// Collapse All Panel in Main panel, containts:
+        /// pnInit, pnChat, pnSentRequest, pnReceivedRequest
+        /// </summary>
         private void CollapseAllPanels()
         {
             pnInit.Visibility = Visibility.Collapsed;
             pnChat.Visibility = Visibility.Collapsed;
+            pnSentRequest.Visibility = Visibility.Collapsed;
+            pnReceiveRequest.Visibility = Visibility.Collapsed;
         }
 
         private void TestTemplate()
@@ -278,6 +309,7 @@ namespace ZolaClient
         public void FriendOnlineListChangeUnexpectedly()
         {
             InitFriends();
+            InitFriendsAvatar();
         }
 
         public bool ReceiveMessage(DataMessage message)
@@ -287,35 +319,115 @@ namespace ZolaClient
                 AvatarUrl = AvatarHelper.GetAvatarPath(message.Sender.Username),
                 MessageContent = message.Message
             };
-            ListViewItem item = new ListViewItem();
-            item.Content = displayMessage;
-            item.ContentTemplate = (DataTemplate)this.FindResource("FriendMessageTemplate");
+            ListViewItem item = new ListViewItem
+            {
+                Content = displayMessage,
+                ContentTemplate = (DataTemplate)this.FindResource("FriendMessageTemplate")
+            };
 
             _displayMessages[message.Sender.Username].Add(item);
+            lvChatMessages.ScrollIntoView(item);
+            txtblIsWritting.Text = "";
             return true;
         }
 
         public void FriendChangeAvatar(User friend)
         {
-            BackgroundWorker findFriendAvatar = new BackgroundWorker();
-            findFriendAvatar.WorkerReportsProgress = false;
-            findFriendAvatar.WorkerSupportsCancellation = true;
-            findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
-            findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
-            findFriendAvatar.RunWorkerAsync(friend.Username);
+            //BackgroundWorker findFriendAvatar = new BackgroundWorker();
+            //findFriendAvatar.WorkerReportsProgress = false;
+            //findFriendAvatar.WorkerSupportsCancellation = true;
+            //findFriendAvatar.DoWork += FindFriendAvatar_DoWork;
+            //findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
+            //findFriendAvatar.RunWorkerAsync(friend.Username);
+            InitAFriendAvatar(friend.Username);
         }
 
         public void FriendIsWrittingMessage(User Friend)
         {
-            throw new NotImplementedException();
+            if (pnChat.Visibility == Visibility.Visible && txtblUsernameCurFriend.Text == Friend.Username)
+            {
+                txtblIsWritting.Text = Friend.Name + " is writting....";
+            }
         }
+
         public void ReceiveMakeFriendRequest(User stranger)
         {
-            throw new NotImplementedException();
+            DisplayUser displayStranger = new DisplayUser()
+            {
+                AvatarUrl = AvatarHelper.DefaultAvatarPath,
+                IsOnline = stranger.IsOnline,
+                Name = stranger.Name,
+                Username = stranger.Username,
+                UserType = UserType.Requests
+            };
+            ListViewItem item = new ListViewItem()
+            {
+                Content = displayStranger,
+                ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate")
+            };
+            _displayFriends.Add(item);
+            _friends.Add(stranger);
+            _displayMessages.Add(stranger.Username, new ObservableCollection<ListViewItem>());
+            InitAFriendAvatar(stranger.Username);
         }
-        public void GotANewFriend()
+
+        public void GotANewFriend(User newFriend)
         {
-            throw new NotImplementedException();
+            ListViewItem item = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == newFriend.Username);
+            DisplayUser user = item.Content as DisplayUser;
+            user.UserType = UserType.Friends;
+            user.IsOnline = newFriend.IsOnline;
+            if (user.IsOnline == true)
+            {
+                item.ContentTemplate = (DataTemplate)this.FindResource("OnlineTemplate");
+            }
+            else
+            {
+                item.ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate");
+            }
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvFriends.ItemsSource);
+            view.Refresh();
+            if (pnReceiveRequest.Visibility == Visibility.Visible || pnSentRequest.Visibility == Visibility.Visible)
+            {
+                CollapseAllPanels();
+                pnChat.Visibility = Visibility.Visible;
+                pnChat.Visibility = Visibility.Visible;
+                txtblNameCurFriend.Text = newFriend.Name;
+                txtblUsernameCurFriend.Text = newFriend.Username;
+                AvatarHelper.LoadAvatarFromLocal(imgCurFriend, newFriend.Username);
+                lvChatMessages.ItemsSource = _displayMessages[newFriend.Username];
+                txtblIsWritting.Text = "";
+            }
+
+        }
+
+        public void FriendStopWrittingMessage(User Friend)
+        {
+            if (pnChat.Visibility == Visibility.Visible && txtblUsernameCurFriend.Text == Friend.Username)
+            {
+                txtblIsWritting.Text = "";
+            }
+        }
+
+        public void SentMakeFriendRequest(User stranger)
+        {
+            DisplayUser displayStranger = new DisplayUser()
+            {
+                AvatarUrl = AvatarHelper.DefaultAvatarPath,
+                IsOnline = stranger.IsOnline,
+                Name = stranger.Name,
+                Username = stranger.Username,
+                UserType = UserType.Pendings
+            };
+            ListViewItem item = new ListViewItem()
+            {
+                Content = displayStranger,
+                ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate")
+            };
+            _displayFriends.Add(item);
+            _friends.Add(stranger);
+            _displayMessages.Add(stranger.Username, new ObservableCollection<ListViewItem>());
+            InitAFriendAvatar(stranger.Username);
         }
         #endregion
 
@@ -398,6 +510,31 @@ namespace ZolaClient
         {
             throw new NotImplementedException();
         }
+
+        public IAsyncResult BeginFriendStopWrittingMessage(User Friend, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndFriendStopWrittingMessage(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginGotANewFriend(User newFriend, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginSentMakeFriendRequest(User stranger, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSentMakeFriendRequest(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Load Friend Avatar worker
@@ -420,7 +557,7 @@ namespace ZolaClient
             DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == username).Content as DisplayUser;
             user.AvatarUrl = null;
             string avatarPath = AvatarHelper.GetAvatarPath(username);
-            if(avatarPath == null)
+            if (avatarPath == null)
             {
                 avatarPath = AvatarHelper.DefaultAvatarPath;
             }
@@ -478,9 +615,12 @@ namespace ZolaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new Exception("An exeption in Update Information form: " + ex.Message);
             }
-            updateInformationDialog.Close();
+            finally
+            {
+                updateInformationDialog.Close();
+            }
             //this.Show();
         }
 
@@ -514,33 +654,51 @@ namespace ZolaClient
                 switch (user.UserType)
                 {
                     case UserType.Friends:
-                        if (user.UserType == UserType.Friends)
+                        if (pnChat.Visibility == Visibility.Collapsed)
                         {
-                            if (pnChat.Visibility == Visibility.Collapsed)
-                            {
-                                CollapseAllPanels();
-                                pnChat.Visibility = Visibility.Visible;
-                            }
+                            CollapseAllPanels();
+                            pnChat.Visibility = Visibility.Visible;
                         }
+                        else
+                        {
+                            if (user.Username == txtblUsernameCurFriend.Text)
+                                break;
+                        }
+                        txtblNameCurFriend.Text = user.Name;
+                        txtblUsernameCurFriend.Text = user.Username;
+                        AvatarHelper.LoadAvatarFromLocal(imgCurFriend, user.Username);
+                        lvChatMessages.ItemsSource = _displayMessages[user.Username];
+                        txtblIsWritting.Text = "";
                         break;
                     case UserType.Pendings:
-                        CollapseAllPanels();
+                        if (pnSentRequest.Visibility == Visibility.Collapsed)
+                        {
+                            CollapseAllPanels();
+                            pnSentRequest.Visibility = Visibility.Visible;
+                        }
                         break;
                     case UserType.Requests:
-                        CollapseAllPanels();
+                        if (pnReceiveRequest.Visibility == Visibility.Collapsed)
+                        {
+                            CollapseAllPanels();
+                            pnReceiveRequest.Visibility = Visibility.Visible;
+                        }
+                        AvatarHelper.LoadAvatarFromLocal(imgRequestFriend, user.Username);
+                        txtblRequestName.Text = user.Name;
+                        txtblRequestUsername.Text = user.Username;
+                        bool? gender = _friends.Find(x => x.Username == user.Username).IsMale;
+                        if (gender == true) txtblRequestGender.Text = "Male";
+                        if (gender == false) txtblRequestGender.Text = "Female";
+                        if (gender == null) txtblRequestGender.Text = "Unknow";
                         break;
                 }
-                
-
-                txtblNameCurFriend.Text = user.Name;
-                txtblUsernameCurFriend.Text = user.Username;
-                AvatarHelper.LoadAvatarFromLocal(imgCurFriend, user.Username);
-                lvChatMessages.ItemsSource = _displayMessages[user.Username];
             }
         }
 
         private void btnSendMessage_Click(object sender, RoutedEventArgs e)
         {
+            if (txtMessageToSend.Text.Length == 0)
+                return;
             ZolaService.DataMessage message = new DataMessage()
             {
                 Message = txtMessageToSend.Text,
@@ -552,7 +710,7 @@ namespace ZolaClient
                 SentTime = DateTime.Now,
             };
 
-            App.Proxy.SendMessage(message);
+            App.Proxy.SendMessageAsync(message);
 
             DisplayMessage displayMessage = new DisplayMessage()
             {
@@ -563,8 +721,10 @@ namespace ZolaClient
             item.Content = displayMessage;
             item.ContentTemplate = (DataTemplate)this.FindResource("MyMessageTemplate");
             _displayMessages[txtblUsernameCurFriend.Text].Add(item);
+            lvChatMessages.ScrollIntoView(item);
 
             txtMessageToSend.Text = "";
+            isWritting = false;
         }
 
         private void txtMessageToSend_KeyUp(object sender, KeyEventArgs e)
@@ -575,10 +735,23 @@ namespace ZolaClient
 
         private void txtMessageToSend_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if(txtMessageToSend.Text.Length > 0)
-            //{
-            //    App.Proxy.Writting(_curUser, _friends.ToList().Find(x => x.Username == txtblUsernameCurFriend.Text));
-            //}
+            if (txtMessageToSend.Text.Length > 0)
+            {
+                if (isWritting)
+                {
+
+                }
+                else
+                {
+                    isWritting = true;
+                    App.Proxy.WrittingAsync(_curUser, new User() { Username = txtblUsernameCurFriend.Text });
+                }
+            }
+            else
+            {
+                isWritting = false;
+                App.Proxy.StopWrittingAsync(_curUser, new User() { Username = txtblUsernameCurFriend.Text });
+            }
         }
 
         private void btnFindStranger_Click(object sender, RoutedEventArgs e)
@@ -586,7 +759,16 @@ namespace ZolaClient
             FindStranger findStrangerDialog = new FindStranger(_curUser);
             findStrangerDialog.ShowDialog();
         }
+
+        private void btnAccept_Click(object sender, RoutedEventArgs e)
+        {
+            ZolaService.User bar = _curUser;
+            ZolaService.User foo = new User() { Username = txtblRequestUsername.Text, Name = txtblRequestName.Text };
+            App.Proxy.AcceptFriendRequest(foo, bar);
+
+        }
         #endregion
+
     }
 
     #region Display Classed

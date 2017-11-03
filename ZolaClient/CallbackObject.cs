@@ -32,7 +32,7 @@ namespace ZolaClient
             throw new NotImplementedException();
         }
 
-        public void GotANewFriend()
+        public void GotANewFriend(User newFriend)
         {
             throw new NotImplementedException();
         }
@@ -43,6 +43,21 @@ namespace ZolaClient
         }
 
         public bool ReceiveMessage(DataMessage message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FriendStopWrittingMessage(User Friend)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SentMakeFriendRequest(User stranger)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FriendOffline(User offlineFriend)
         {
             throw new NotImplementedException();
         }
@@ -119,17 +134,37 @@ namespace ZolaClient
             throw new NotImplementedException();
         }
 
-        public void FriendOffline(User offlineFriend)
-        {
-            throw new NotImplementedException();
-        }
-
         public IAsyncResult BeginFriendOffline(User offlineFriend, AsyncCallback callback, object asyncState)
         {
             throw new NotImplementedException();
         }
 
         public void EndFriendOffline(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginFriendStopWrittingMessage(User Friend, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndFriendStopWrittingMessage(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginGotANewFriend(User newFriend, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginSentMakeFriendRequest(User stranger, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndSentMakeFriendRequest(IAsyncResult result)
         {
             throw new NotImplementedException();
         }

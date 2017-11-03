@@ -177,6 +177,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="StopWritting">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="writer" nillable="true" type="q11:User" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="friend" nillable="true" type="q12:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendFriendRequest">
     <xs:complexType>
       <xs:sequence>
@@ -188,57 +196,57 @@
   <xs:element name="GetPendingFriendRequests">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q11:User" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q13:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetPendingFriendRequestsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="GetPendingFriendRequestsResult" nillable="true" type="q12:ArrayOfUser" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="GetPendingFriendRequestsResult" nillable="true" type="q14:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AcceptFriendRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="foo" nillable="true" type="q13:User" />
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="bar" nillable="true" type="q14:User" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="foo" nillable="true" type="q15:User" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="bar" nillable="true" type="q16:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSentFriendRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q15:User" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q17:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSentFriendRequestResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="GetSentFriendRequestResult" nillable="true" type="q16:ArrayOfUser" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="GetSentFriendRequestResult" nillable="true" type="q18:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Logout">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q17:User" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="user" nillable="true" type="q19:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FriendOnline">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="onlineFriend" nillable="true" type="q18:User" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="onlineFriend" nillable="true" type="q20:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FriendOffline">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="offlineFriend" nillable="true" type="q19:User" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="offlineFriend" nillable="true" type="q21:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -250,7 +258,7 @@
   <xs:element name="ReceiveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="message" nillable="true" type="q20:DataMessage" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="message" nillable="true" type="q22:DataMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -264,27 +272,43 @@
   <xs:element name="FriendChangeAvatar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="friend" nillable="true" type="q21:User" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="friend" nillable="true" type="q23:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FriendIsWrittingMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="Friend" nillable="true" type="q22:User" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="Friend" nillable="true" type="q24:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FriendStopWrittingMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="Friend" nillable="true" type="q25:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveMakeFriendRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="stranger" nillable="true" type="q23:User" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="stranger" nillable="true" type="q26:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GotANewFriend">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="newFriend" nillable="true" type="q27:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SentMakeFriendRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/ServerLibrary" minOccurs="0" name="stranger" nillable="true" type="q28:User" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

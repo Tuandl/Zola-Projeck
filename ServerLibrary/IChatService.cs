@@ -49,6 +49,9 @@ namespace ServerLibrary
         void Writting(User writer, User waiter);
 
         [OperationContract(IsOneWay = true)]
+        void StopWritting(User writer, User friend);
+
+        [OperationContract(IsOneWay = true)]
         void SendFriendRequest(string sender, string stranger);
 
         [OperationContract(IsOneWay = false)]

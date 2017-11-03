@@ -26,9 +26,15 @@ namespace ServerLibrary
         void FriendIsWrittingMessage(User Friend);
 
         [OperationContract(IsOneWay = true)]
+        void FriendStopWrittingMessage(User Friend);
+
+        [OperationContract(IsOneWay = true)]
         void ReceiveMakeFriendRequest(User stranger);
 
         [OperationContract(IsOneWay =  true)]
-        void GotANewFriend();
+        void GotANewFriend(User newFriend);
+
+        [OperationContract(IsOneWay = true)]
+        void SentMakeFriendRequest(User stranger);
     }
 }

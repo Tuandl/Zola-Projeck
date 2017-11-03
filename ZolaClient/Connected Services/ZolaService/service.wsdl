@@ -95,6 +95,9 @@
   <wsdl:message name="IChatService_Writting_InputMessage">
     <wsdl:part name="parameters" element="tns:Writting" />
   </wsdl:message>
+  <wsdl:message name="IChatService_StopWritting_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopWritting" />
+  </wsdl:message>
   <wsdl:message name="IChatService_SendFriendRequest_InputMessage">
     <wsdl:part name="parameters" element="tns:SendFriendRequest" />
   </wsdl:message>
@@ -137,11 +140,17 @@
   <wsdl:message name="IChatService_FriendIsWrittingMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:FriendIsWrittingMessage" />
   </wsdl:message>
+  <wsdl:message name="IChatService_FriendStopWrittingMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendStopWrittingMessage" />
+  </wsdl:message>
   <wsdl:message name="IChatService_ReceiveMakeFriendRequest_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMakeFriendRequest" />
   </wsdl:message>
   <wsdl:message name="IChatService_GotANewFriend_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GotANewFriend" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SentMakeFriendRequest_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SentMakeFriendRequest" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IChatService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
@@ -194,6 +203,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Writting">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Writting" message="tns:IChatService_Writting_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StopWritting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/StopWritting" message="tns:IChatService_StopWritting_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendFriendRequest">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendFriendRequest" message="tns:IChatService_SendFriendRequest_InputMessage" />
     </wsdl:operation>
@@ -230,11 +242,17 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendIsWrittingMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendIsWrittingMessage" message="tns:IChatService_FriendIsWrittingMessage_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FriendStopWrittingMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/FriendStopWrittingMessage" message="tns:IChatService_FriendStopWrittingMessage_OutputCallbackMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMakeFriendRequest">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ReceiveMakeFriendRequest" message="tns:IChatService_ReceiveMakeFriendRequest_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GotANewFriend">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GotANewFriend" message="tns:IChatService_GotANewFriend_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SentMakeFriendRequest">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SentMakeFriendRequest" message="tns:IChatService_SentMakeFriendRequest_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
@@ -352,6 +370,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="StopWritting">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/StopWritting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="SendFriendRequest">
       <soap12:operation soapAction="http://tempuri.org/IChatService/SendFriendRequest" style="document" />
       <wsdl:input>
@@ -427,6 +451,12 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="FriendStopWrittingMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/FriendStopWrittingMessage" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ReceiveMakeFriendRequest">
       <soap12:operation soapAction="http://tempuri.org/IChatService/ReceiveMakeFriendRequest" style="document" />
       <wsdl:output>
@@ -435,6 +465,12 @@
     </wsdl:operation>
     <wsdl:operation name="GotANewFriend">
       <soap12:operation soapAction="http://tempuri.org/IChatService/GotANewFriend" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SentMakeFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SentMakeFriendRequest" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

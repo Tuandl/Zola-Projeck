@@ -1,0 +1,10 @@
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ConsoleHost.exe.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ConsoleHost.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ConsoleHost.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ServerLibrary.dll
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ServerLibrary.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\bin\Release\ServerLibrary.dll.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\obj\Release\ConsoleHost.csprojResolveAssemblyReference.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\obj\Release\ConsoleHost.csproj.CoreCompileInputs.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\obj\Release\ConsoleHost.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ConsoleHost\obj\Release\ConsoleHost.pdb

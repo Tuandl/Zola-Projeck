@@ -45,7 +45,6 @@ namespace ZolaClient
                     this.Hide();
                     chatWindow.ShowDialog();
                     App.Proxy.Logout(user);
-                    chatWindow.Close();
                 }
                 else
                 {
