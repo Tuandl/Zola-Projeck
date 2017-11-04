@@ -30,3 +30,5 @@ C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Zo
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.csproj.CoreCompileInputs.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.exe
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\ZolaClient.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Notification\NotificationWindow.baml
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Debug\Notification\NotificationWindow.g.cs

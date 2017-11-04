@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using ZolaClient.Helpers;
+using ZolaClient.Notification;
 
 namespace ZolaClient
 {
@@ -39,7 +40,8 @@ namespace ZolaClient
                 string password = txtPassword.Password;
                 if (App.Proxy.Login(username, password))
                 {
-                    MessageBox.Show("Login Success");
+                    //MessageBox.Show("Login Success");
+                    NotificationHelper.NotifyInfo("Login Success");
                     ZolaService.User user = App.Proxy.GetUserInformation(username);
                     chatWindow.Init(user);
                     this.Hide();
@@ -48,12 +50,14 @@ namespace ZolaClient
                 }
                 else
                 {
-                    MessageBox.Show("Login Fail");
+                    //MessageBox.Show("Login Fail");
+                    NotificationHelper.NotifyError("Login Fail");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                NotificationHelper.NotifyError(ex.Message);
             } finally
             {
                 App.Disconnect();
@@ -73,7 +77,8 @@ namespace ZolaClient
 
             if (registerDialog.ShowDialog() == true)
             {
-                MessageBox.Show("Register complete!");
+                //MessageBox.Show("Register complete!");
+                NotificationHelper.NotifyInfo("Register Complete!");
             }
             else
             {
@@ -91,7 +96,8 @@ namespace ZolaClient
                 App.IP = ipConfigDialog.NewIP;
             }
             ipConfigDialog.Close();
-            MessageBox.Show("new ip: " + App.IP);
+            //MessageBox.Show("new ip: " + App.IP);
+            NotificationHelper.NotifyInfo("New IP: " + App.IP);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

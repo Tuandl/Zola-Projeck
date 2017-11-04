@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZolaClient.Helpers;
 
 namespace ZolaClient
 {
@@ -40,19 +41,23 @@ namespace ZolaClient
             //Validate
             if (username.Length <= 2)
             {
-                MessageBox.Show("Username must have more than 2 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                //MessageBox.Show("Username must have more than 2 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                NotificationHelper.NotifyError("Username must have more than 2 chars");
             }
             else if (password.Length < 5)
             {
-                MessageBox.Show("Password must have more than 4 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                //MessageBox.Show("Password must have more than 4 chars", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                NotificationHelper.NotifyError("Password must have more than 4 chars");
             }
             else if (name.Length < 1)
             {
-                MessageBox.Show("Please input name", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                //MessageBox.Show("Please input name", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                NotificationHelper.NotifyError("Please input name");
             }
             else if (password != confirmPassword)
             {
-                MessageBox.Show("Password confirm not match!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                //MessageBox.Show("Password confirm not match!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                NotificationHelper.NotifyError("Password confirm not match!");
             }
             else
             {
@@ -70,7 +75,8 @@ namespace ZolaClient
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
+                    NotificationHelper.NotifyError(ex.Message);
                 }
                 finally
                 {
@@ -80,7 +86,8 @@ namespace ZolaClient
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        //MessageBox.Show(ex.Message);
+                        NotificationHelper.NotifyError(ex.Message);
                     }
                 }
 

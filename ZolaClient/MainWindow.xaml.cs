@@ -294,7 +294,7 @@ namespace ZolaClient
             ListViewItem item = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == onlineFriend.Username);
             item.ContentTemplate = (DataTemplate)this.FindResource("OnlineTemplate");
             //MessageBox.Show("complete online change");
-
+            NotificationHelper.NotifyInfo(onlineFriend.Name + " is online!");
         }
 
         public void FriendOffline(User offlineFriend)
@@ -304,6 +304,7 @@ namespace ZolaClient
             ListViewItem item = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == offlineFriend.Username);
             item.ContentTemplate = (DataTemplate)this.FindResource("OfflineTemplate");
             //MessageBox.Show("complete online change");
+            NotificationHelper.NotifyInfo(offlineFriend.Name + " is offline");
         }
 
         public void FriendOnlineListChangeUnexpectedly()
@@ -345,6 +346,7 @@ namespace ZolaClient
                 {
                     user.UnreadMessage++;
                 }
+                NotificationHelper.NotifyGotAMessage(message.Sender.Name, message.Message);
                 //MessageBox.Show("unread message = " + user.UnreadMessage);
             }
             return true;
@@ -359,6 +361,7 @@ namespace ZolaClient
             //findFriendAvatar.RunWorkerCompleted += FindFriendAvatar_RunWorkerCompleted;
             //findFriendAvatar.RunWorkerAsync(friend.Username);
             InitAFriendAvatar(friend.Username);
+            NotificationHelper.NotifyInfo(friend.Name + " have just changed avatar");
         }
 
         public void FriendIsWrittingMessage(User Friend)
@@ -388,6 +391,7 @@ namespace ZolaClient
             _friends.Add(stranger);
             _displayMessages.Add(stranger.Username, new ObservableCollection<ListViewItem>());
             InitAFriendAvatar(stranger.Username);
+            NotificationHelper.NotifyInfo(stranger.Name + " wants to make friend");
         }
 
         public void GotANewFriend(User newFriend)
@@ -417,7 +421,7 @@ namespace ZolaClient
                 lvChatMessages.ItemsSource = _displayMessages[newFriend.Username];
                 txtblIsWritting.Text = "";
             }
-
+            NotificationHelper.NotifyInfo(newFriend.Name + " is your friend now!");
         }
 
         public void FriendStopWrittingMessage(User Friend)

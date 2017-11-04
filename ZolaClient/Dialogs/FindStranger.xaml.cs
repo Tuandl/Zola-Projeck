@@ -142,7 +142,8 @@ namespace ZolaClient.Dialogs
         private void Proxy_SendFriendRequestCompleted(object sender, AsyncCompletedEventArgs e)
         {
             MakeFindStrangerRequest(txtStrangerUsername.Text);
-            MessageBox.Show("Request is pending...");
+            //MessageBox.Show("Request is pending...");
+            NotificationHelper.NotifyInfo("Request is pending...");
         }
 
         private void txtStrangerUsername_TextChanged(object sender, TextChangedEventArgs e)

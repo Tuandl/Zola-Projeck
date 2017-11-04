@@ -68,12 +68,14 @@ namespace ZolaClient.Dialogs
             //validate
             if (isMale == null)
             {
-                MessageBox.Show("Please select a gender");
+                //MessageBox.Show("Please select a gender");
+                NotificationHelper.NotifyError("Pleaser select a gender");
                 return;
             }
             if (name.Length < 1)
             {
-                MessageBox.Show("Please Input name");
+                //MessageBox.Show("Please Input name");
+                NotificationHelper.NotifyError("Please Input Name");
                 return;
             }
 
@@ -81,11 +83,13 @@ namespace ZolaClient.Dialogs
             _curUser.IsMale = isMale;
             if (App.Proxy.UpdateInformation(_curUser) == true)
             {
-                MessageBox.Show("Update Complete");
+                //MessageBox.Show("Update Complete");
+                NotificationHelper.NotifyInfo("Update Complete");
             }
             else
             {
-                MessageBox.Show("Update False");
+                //MessageBox.Show("Update False");
+                NotificationHelper.NotifyError("Update False");
             }
         }
 
@@ -96,21 +100,25 @@ namespace ZolaClient.Dialogs
             string confirmPass = txtConfirmPassword.Password;
             if (oldPass.Length == 0 || newPass.Length == 0 || confirmPass.Length == 0)
             {
-                MessageBox.Show("Please fill the above form");
+                //MessageBox.Show("Please fill the above form");
+                NotificationHelper.NotifyError("Please fill the above form");
                 return;
             }
             if (newPass != confirmPass)
             {
-                MessageBox.Show("Confirm does not match");
+                //MessageBox.Show("Confirm does not match");
+                NotificationHelper.NotifyError("Confirm does not match");
                 return;
             }
             if (App.Proxy.UpdatePassword(_curUser.Username, oldPass, newPass) == true)
             {
-                MessageBox.Show("Change password success!!");
+                //MessageBox.Show("Change password success!!");
+                NotificationHelper.NotifyInfo("Change password success!!");
             }
             else
             {
-                MessageBox.Show("Old password does not match!");
+                //MessageBox.Show("Old password does not match!");
+                NotificationHelper.NotifyError("Old password does not match!");
             }
         }
 
@@ -139,11 +147,13 @@ namespace ZolaClient.Dialogs
             };
             if (App.Proxy.UpdateAvatar(_curUser.Username, newAvatar))
             {
-                MessageBox.Show("update avatar complete");
+                //MessageBox.Show("update avatar complete");
+                NotificationHelper.NotifyInfo("Update Avatar Complete");
             }
             else
             {
-                MessageBox.Show("error");
+                //MessageBox.Show("error");
+                NotificationHelper.NotifyError("Update Avatar Failed");
             }
         }
     }
