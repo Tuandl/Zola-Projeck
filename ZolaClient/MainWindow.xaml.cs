@@ -328,6 +328,25 @@ namespace ZolaClient
             _displayMessages[message.Sender.Username].Add(item);
             lvChatMessages.ScrollIntoView(item);
             txtblIsWritting.Text = "";
+            DisplayUser user = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == message.Sender.Username).Content as DisplayUser;
+            //MessageBox.Show("Here");
+            if (pnChat.Visibility == Visibility.Visible && txtblUsernameCurFriend.Text == message.Sender.Username)
+            {
+                user.UnreadMessage = null;
+                //MessageBox.Show("null");
+            }
+            else
+            {
+                if(user.UnreadMessage == null)
+                {
+                    user.UnreadMessage = 1;
+                }
+                else
+                {
+                    user.UnreadMessage++;
+                }
+                //MessageBox.Show("unread message = " + user.UnreadMessage);
+            }
             return true;
         }
 
@@ -593,6 +612,15 @@ namespace ZolaClient
                 item.Content = displayMessage;
                 item.ContentTemplate = (DataTemplate)this.FindResource("FriendMessageTemplate");
                 _displayMessages[message.Sender.Username].Add(item);
+                DisplayUser displayUser = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == message.Sender.Username).Content as DisplayUser;
+                if (displayUser.UnreadMessage == null)
+                {
+                    displayUser.UnreadMessage = 1;
+                }
+                else
+                {
+                    displayUser.UnreadMessage++;
+                }
             }
         }
 
@@ -669,6 +697,10 @@ namespace ZolaClient
                         AvatarHelper.LoadAvatarFromLocal(imgCurFriend, user.Username);
                         lvChatMessages.ItemsSource = _displayMessages[user.Username];
                         txtblIsWritting.Text = "";
+                        DisplayUser displayUser = _displayFriends.ToList().Find(x => (x.Content as DisplayUser).Username == user.Username).Content as DisplayUser;
+                        displayUser.UnreadMessage = null;
+                        txtMessageToSend.Text = "";
+                        txtMessageToSend.Focus();
                         break;
                     case UserType.Pendings:
                         if (pnSentRequest.Visibility == Visibility.Collapsed)
@@ -779,6 +811,7 @@ namespace ZolaClient
         private string _name;
         private string _username;
         private UserType _userType;
+        private int? _unReadMessage = null;
 
         public string AvatarUrl
         {
@@ -825,6 +858,19 @@ namespace ZolaClient
                 {
                     this._userType = value;
                     NotifyPropertyChanged("UserType");
+                }
+            }
+        }
+        public int? UnreadMessage
+        {
+            get { return this._unReadMessage; }
+            set
+            {
+                //MessageBox.Show("new value = " + value);
+                if (value != this._unReadMessage)
+                {
+                    this._unReadMessage = value;
+                    NotifyPropertyChanged("UnreadMessage");
                 }
             }
         }

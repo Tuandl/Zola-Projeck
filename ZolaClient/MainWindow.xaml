@@ -13,8 +13,10 @@
         <DataTemplate x:Key="OnlineTemplate">
             <DockPanel Margin="0 3">
                 <Image Width="65" Height="65" 
+                        Stretch="UniformToFill"
                                        DockPanel.Dock="Left"
                                        Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
+                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}"
@@ -27,7 +29,9 @@
             <DockPanel Margin="0 3" HorizontalAlignment="Stretch">
                 <Image Width="65" Height="65" 
                         DockPanel.Dock="Left"
+                        Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
+                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}" Margin="0 5 0 0"></TextBlock>
@@ -40,6 +44,7 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Right"
+                        Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Right">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Right"
@@ -51,6 +56,7 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Left"
+                        Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
                 <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Left">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Left"
@@ -66,24 +72,45 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Top"/>
         <DockPanel DockPanel.Dock="Left" Width="229">
+
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                    <GradientStop Color="#FFE5FFAF"/>
+                    <GradientStop Color="#FFFFEDE4" Offset="1"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
             <DockPanel DockPanel.Dock="Top" Margin="5">
                 <Image Name="imgCurUserAvatar" Source="Resources/img/avatar-default.png"
                    Width="75" Height="75"
+                        Stretch="UniformToFill"
                    DockPanel.Dock="Left"/>
                 <StackPanel Margin="10 0 0 0">
                     <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"/></TextBlock>
-                    <Button Name="btnUpdateInformation" Click="btnUpdateInformation_Click">Update Information</Button>
-                    <Button Name="btnFindStranger" Click="btnFindStranger_Click" Margin="0 5 0 0">Explore Friends</Button>
+                    <Button Name="btnUpdateInformation" Click="btnUpdateInformation_Click" Background="#FFFDF5F5">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="9" Direction="280" ShadowDepth="2"/>
+                        </Button.Effect> Update Information
+                    </Button>
+                    <Button Name="btnFindStranger" Click="btnFindStranger_Click" Margin="0 5 0 0" Background="#FFFDF5F5">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="9" Direction="280" ShadowDepth="2"/>
+                        </Button.Effect>
+                        Explore Friends
+                    </Button>
                 </StackPanel>
             </DockPanel>
             <DockPanel Margin="0 10 0 0">
                 <!--search-->
-                <StackPanel DockPanel.Dock="Top">
-                    <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged"/>
-                </StackPanel>
+                <Border DockPanel.Dock="Top" BorderBrush="#FF5891AA" BorderThickness="3" CornerRadius="12" Height="28.667">
+                    <DockPanel>
+                        <Image DockPanel.Dock="Left" Source="Resources/img/seach-icon.png" Width="20" Height="20" Margin="1,0,0,0" />
+                        <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" BorderBrush="{x:Null}" Background="{x:Null}" Width="186.332" Height="15.333" Padding="0,-3,0,0" BorderThickness="0"/>
+                    </DockPanel>
+                </Border>
+                
                 <!--contents-->
                 <DockPanel>
-                    <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch">
+                    <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" BorderBrush="{x:Null}" Background="{x:Null}">
                         <ListView.GroupStyle>
                             <GroupStyle>
                                 <GroupStyle.HeaderTemplate>
@@ -98,27 +125,74 @@
             </DockPanel>
         </DockPanel>
 
-        <DockPanel Name="pnMainDisplay">
+        <DockPanel Name="pnMainDisplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DockPanel.Background>
+                <VisualBrush Stretch="None" Opacity="0.8" >
+                    <VisualBrush.Visual>
+                        <Image>
+                            <Image.Effect>
+                                <BlurEffect Radius="20" KernelType="Gaussian"/>
+                            </Image.Effect>
+                            <Image.Source>
+                                <BitmapImage CreateOptions="PreservePixelFormat" CacheOption="OnLoad" UriSource="Resources/img/main-panel-background-2.jpg" DecodePixelHeight="1500" DecodePixelWidth="1500"/>
+                            </Image.Source>
+                        </Image>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </DockPanel.Background>
             <StackPanel Name="pnInit" Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                <TextBlock Margin="0 200" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold">Hello <TextBlock Name="txtblCurUserName2"/></TextBlock>
+                        Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock Margin="0,306,0,0" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold" HorizontalAlignment="Center">Hello <TextBlock Name="txtblCurUserName2"/></TextBlock>
             </StackPanel>
             <DockPanel Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
-                       Name="pnChat" DockPanel.Dock="Top" Visibility="Collapsed">
-                <StackPanel DockPanel.Dock="Top" Height="112" HorizontalAlignment="Left" Orientation="Horizontal">
-                    <Image Name="imgCurFriend" Source="Resources/img/avatar-default.png" Margin="20 10"/>
+                       Name="pnChat" DockPanel.Dock="Top">
+                <StackPanel DockPanel.Dock="Top" Height="112" Orientation="Horizontal">
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF5FFE8" Offset="0"/>
+                            <GradientStop Color="#FFD9E4DE" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <Image Name="imgCurFriend" Source="Resources/img/avatar-default.png" Margin="20 10" MaxWidth="92" MaxHeight="92" Stretch="UniformToFill">
+                        <Image.Effect>
+                            <DropShadowEffect Color="#FF878787"/>
+                        </Image.Effect>
+                    </Image>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                        <TextBlock Name="txtblNameCurFriend" Margin="10" FontSize="20" FontWeight="Bold">Tên</TextBlock>
-                        <TextBlock Name="txtblUsernameCurFriend" Margin="10" FontSize="15" FontStyle="Italic">Username</TextBlock>
+                        <TextBlock Name="txtblNameCurFriend" Margin="10" FontSize="24" FontWeight="Bold">Tên</TextBlock>
+                        <TextBlock Name="txtblUsernameCurFriend" Margin="10,-11,10,10" FontSize="15" FontStyle="Italic">Username</TextBlock>
                     </StackPanel>
                 </StackPanel>
                 <DockPanel>
                     <DockPanel DockPanel.Dock="Bottom" Height="42" >
-                        <Button Click="btnSendMessage_Click" Name="btnSendMessage" Content="Gửi" DockPanel.Dock="Right" Width="58"/>
-                        <TextBox Name="txtMessageToSend" KeyUp="txtMessageToSend_KeyUp" TextChanged="txtMessageToSend_TextChanged"/>
+                        <Button Click="btnSendMessage_Click" Name="btnSendMessage" 
+                                DockPanel.Dock="Right" Width="58" 
+                                Background="#FFC1CDC6" BorderBrush="#FFC1CDC6">
+                            <Image Source="Resources/img/send.png" Margin="5" />
+                        </Button>
+                        <Border Padding="5" BorderThickness="2" CornerRadius="10" OpacityMask="White" Background="White">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FFD9E1D9" Offset="0"/>
+                                    <GradientStop Color="#FFC8D1C9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <TextBox Name="txtMessageToSend" KeyUp="txtMessageToSend_KeyUp" 
+                                     TextChanged="txtMessageToSend_TextChanged" 
+                                     TextWrapping="WrapWithOverflow" MaxLines="10" 
+                                     FontSize="16" MaxHeight="42" BorderBrush="White"
+                                     BorderThickness="0" Height="24"/>
+                        </Border>
                     </DockPanel>
-                    <TextBlock Name="txtblIsWritting" DockPanel.Dock="Bottom" FontStyle="Italic" Margin="10 3"/>
-                    <ListView Name="lvChatMessages" BorderBrush="SeaGreen">
+                    <TextBlock Name="txtblIsWritting" DockPanel.Dock="Bottom" FontStyle="Italic" Margin="0" Height="28" Cursor="None" Padding="12,6,0,0">
+                        <TextBlock.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD0D8D0" Offset="1"/>
+                                <GradientStop Color="#FFDDE1D6"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <ListView Name="lvChatMessages" BorderBrush="{x:Null}" Background="{x:Null}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -139,7 +213,7 @@
             <StackPanel Width="{Binding ElementName=pnMainDisplay, Path=ActualWidth}"
                         Height="{Binding ElementName=pnMainDisplay, Path=ActualHeight}"
                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Name="pnReceiveRequest">
+                        Visibility="Collapsed" Name="pnReceiveRequest">
                 <DockPanel Margin="45">
                     <Image DockPanel.Dock="Top" Source="Resources/img/avatar-default.png"
                            Width="200" Height="200"

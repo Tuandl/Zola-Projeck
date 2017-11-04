@@ -154,6 +154,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\img\main-panel-background-2.jpg" />
+    <Resource Include="Resources\img\send.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\seach-icon.png" />
     <Content Include="Resources\img\zola-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
