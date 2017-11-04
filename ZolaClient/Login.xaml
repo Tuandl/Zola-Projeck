@@ -8,6 +8,12 @@
         Icon="/Resources/img/zola-icon.png"
         Title="Zola" Height="348.797" Width="331.357" 
         ResizeMode="CanMinimize" Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF5F1D6" Offset="0"/>
+            <GradientStop Color="#FFFFE1A0" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="_IP config" Name="ctmIPConfig" Click="ctmIPConfig_Click"/>

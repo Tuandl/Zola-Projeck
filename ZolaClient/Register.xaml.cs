@@ -22,6 +22,7 @@ namespace ZolaClient
         public Register()
         {
             InitializeComponent();
+            txtUsername.Focus();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

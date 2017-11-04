@@ -159,6 +159,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\img\seach-icon.png" />
+    <Resource Include="Resources\img\offline-icon.png" />
+    <Resource Include="Resources\img\online-icon.png" />
     <Content Include="Resources\img\zola-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

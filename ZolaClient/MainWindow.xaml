@@ -16,12 +16,15 @@
                         Stretch="UniformToFill"
                                        DockPanel.Dock="Left"
                                        Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
-                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}"/>
+                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}" FontWeight="Bold" TextOptions.TextHintingMode="Animated" FontSize="16" Foreground="#FF471A1A"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}"
                                                Margin="0 5 0 0"></TextBlock>
-                    <TextBlock Text="Online" Margin="0 5 0 0"></TextBlock>
+                    <WrapPanel>
+                        <Image Source="Resources/img/online-icon.png" Margin="0,2,0,0" />
+                        <TextBlock Text="Online" Margin="0 5 0 0"></TextBlock>
+                    </WrapPanel>
                 </StackPanel>
             </DockPanel>
         </DataTemplate>
@@ -31,11 +34,14 @@
                         DockPanel.Dock="Left"
                         Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
-                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}"/>
+                <TextBlock DockPanel.Dock="Right" Text="{Binding UnreadMessage}" FontWeight="Bold" TextOptions.TextHintingMode="Animated" FontSize="16" Foreground="#FF471A1A"/>
                 <StackPanel Margin="10 5 0 0">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="{Binding Username}" Margin="0 5 0 0"></TextBlock>
-                    <TextBlock Text="Offline" Margin="0 5 0 0"></TextBlock>
+                    <WrapPanel>
+                        <Image Source="Resources/img/offline-icon.png" Margin="0,2,0,0"/>
+                        <TextBlock Text="Offline" Margin="0 5 0 0"></TextBlock>
+                    </WrapPanel>
                 </StackPanel>
             </DockPanel>
         </DataTemplate>
@@ -44,11 +50,13 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Right"
+                       VerticalAlignment="Top"
                         Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
-                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Right">
+                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Right" 
+                        Margin="0,0,5,0">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Right"
-                               Margin="10"/>
+                               Margin="10" MaxWidth="600" TextWrapping="Wrap" FontSize="14"/>
                 </Border>
             </DockPanel>
         </DataTemplate>
@@ -56,17 +64,35 @@
             <DockPanel Margin="3 3">
                 <Image Width="65" Height="50" 
                         DockPanel.Dock="Left"
+                       VerticalAlignment="Top"
                         Stretch="UniformToFill"
                         Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
-                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Left">
+                <Border Background="Lavender" CornerRadius="5" HorizontalAlignment="Left" Margin="5,0,0,0">
                     <TextBlock Text="{Binding MessageContent}" HorizontalAlignment="Left"
-                               Margin="10"/>
+                               Margin="10" MaxWidth="600" TextWrapping="Wrap" FontSize="14"/>
                 </Border>
             </DockPanel>
         </DataTemplate>
+        <Storyboard x:Key="AvatarUserStoryBoard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="imgCurUserAvatar">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-84"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="imgCurUserAvatar">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-72"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="-0.333"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="imgCurUserAvatar">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="btnFindStranger"/>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource AvatarUserStoryBoard}"/>
+        </EventTrigger>
     </Window.Triggers>
 
     <DockPanel>
@@ -83,7 +109,16 @@
                 <Image Name="imgCurUserAvatar" Source="Resources/img/avatar-default.png"
                    Width="75" Height="75"
                         Stretch="UniformToFill"
-                   DockPanel.Dock="Left"/>
+                   DockPanel.Dock="Left" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
                 <StackPanel Margin="10 0 0 0">
                     <TextBlock Margin="5">Hello <TextBlock Name="txtblCurUserName"/></TextBlock>
                     <Button Name="btnUpdateInformation" Click="btnUpdateInformation_Click" Background="#FFFDF5F5">
@@ -104,10 +139,10 @@
                 <Border DockPanel.Dock="Top" BorderBrush="#FF5891AA" BorderThickness="3" CornerRadius="12" Height="28.667">
                     <DockPanel>
                         <Image DockPanel.Dock="Left" Source="Resources/img/seach-icon.png" Width="20" Height="20" Margin="1,0,0,0" />
-                        <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" BorderBrush="{x:Null}" Background="{x:Null}" Width="186.332" Height="15.333" Padding="0,-3,0,0" BorderThickness="0"/>
+                        <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" BorderBrush="{x:Null}" Background="{x:Null}" Width="186.332" Height="15.333" Padding="0,-1,0,0" BorderThickness="0"/>
                     </DockPanel>
                 </Border>
-                
+
                 <!--contents-->
                 <DockPanel>
                     <ListView Name="lvFriends" PreviewMouseLeftButtonUp="lvFriends_PreviewMouseLeftButtonUp" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" BorderBrush="{x:Null}" Background="{x:Null}">
@@ -145,7 +180,7 @@
                 <TextBlock Margin="0,306,0,0" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold" HorizontalAlignment="Center">Hello <TextBlock Name="txtblCurUserName2"/></TextBlock>
             </StackPanel>
             <DockPanel Width="{Binding ActualWidth, ElementName=pnMainDisplay}" Height="{Binding ActualHeight, ElementName=pnMainDisplay}" 
-                       Name="pnChat" DockPanel.Dock="Top">
+                       Name="pnChat" DockPanel.Dock="Top" Visibility="Collapsed">
                 <StackPanel DockPanel.Dock="Top" Height="112" Orientation="Horizontal">
                     <StackPanel.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -196,6 +231,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
@@ -213,11 +256,11 @@
             <StackPanel Width="{Binding ElementName=pnMainDisplay, Path=ActualWidth}"
                         Height="{Binding ElementName=pnMainDisplay, Path=ActualHeight}"
                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Visibility="Collapsed" Name="pnReceiveRequest">
+                        Name="pnReceiveRequest" Visibility="Collapsed">
                 <DockPanel Margin="45">
                     <Image DockPanel.Dock="Top" Source="Resources/img/avatar-default.png"
                            Width="200" Height="200"
-                           Name="imgRequestFriend"/>
+                           Name="imgRequestFriend" Stretch="UniformToFill"/>
                     <StackPanel Margin="50">
                         <TextBlock TextAlignment="Center"
                                    FontSize="40"

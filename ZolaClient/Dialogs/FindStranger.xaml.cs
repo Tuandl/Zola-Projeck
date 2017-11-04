@@ -33,6 +33,7 @@ namespace ZolaClient.Dialogs
             InitializeComponent();
             this._curUser = curUser;
             lvStrangers.ItemsSource = _displayUsers;
+            txtStrangerUsername.Focus();
         }
 
         #region private methods

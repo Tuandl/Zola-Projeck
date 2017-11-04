@@ -9,6 +9,14 @@
         WindowStartupLocation="CenterScreen"
         Title="IP Configuration" Height="149.485" Width="302.062"
         ResizeMode="NoResize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White" Offset="0.31"/>
+            <GradientStop Color="#FFCACAFF"/>
+            <GradientStop Color="#FFCACAFF" Offset="1"/>
+            <GradientStop Color="White" Offset="0.657"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <WrapPanel>
             <Label Content="Server _IP: " Target="{Binding ElementName=txtIP}"/>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZolaClient.Dialogs"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Icon="/Resources/img/zola-icon.png"
         Title="Explore Friends" Height="562.7" Width="300">
     <Window.Resources>
@@ -12,20 +13,32 @@
         <DataTemplate x:Key="StrangerItem">
             <DockPanel Margin="3">
                 <Image DockPanel.Dock="Left" Width="70" Height="70"
-                    Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}"/>
-                <StackPanel Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding Username}"/>
+                    Source="{Binding AvatarUrl, Converter={StaticResource StringToImageConverter}}" Stretch="UniformToFill"/>
+                <StackPanel Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="0">
+                    <TextBlock Text="{Binding Username}" FontWeight="Bold" FontSize="14"/>
                     <TextBlock Text="{Binding Name}"/>
-                    <Button Click="Button_Click">Send Friend Request</Button>
+                    <Button Click="Button_Click" Margin="0,3,0,0" Width="100">
+                        <Button.Effect>
+                            <DropShadowEffect Color="#FF77876C" BlurRadius="15" >
+                            </DropShadowEffect>
+                        </Button.Effect> Make friend</Button>
                 </StackPanel>
             </DockPanel>
         </DataTemplate>
     </Window.Resources>
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FFF4FFF3" Offset="1"/>
+            <GradientStop Color="#FFBCFFB5"/>
+        </RadialGradientBrush>
+    </Window.Background>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="5">
-            <TextBlock DockPanel.Dock="Left">Username: </TextBlock>
-            <TextBox TextChanged="txtStrangerUsername_TextChanged" Name="txtStrangerUsername" Margin="5 0 0 0"></TextBox>
+            <TextBlock DockPanel.Dock="Left" Margin="0,2,6,0">Username:</TextBlock>
+            <Border BorderThickness="3" CornerRadius="10" BorderBrush="#FF597856">
+                <TextBox TextChanged="txtStrangerUsername_TextChanged" Name="txtStrangerUsername" Margin="0" BorderThickness="0" Width="201.77" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            </Border>
         </DockPanel>
-        <ListView Name="lvStrangers"></ListView>
+        <ListView Name="lvStrangers" Background="{x:Null}" BorderBrush="{x:Null}"></ListView>
     </DockPanel>
 </Window>
