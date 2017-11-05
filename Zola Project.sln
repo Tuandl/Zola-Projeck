@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHost", "ConsoleHost\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZolaClient", "ZolaClient\ZolaClient.csproj", "{A18E9F73-5482-4227-AE5C-2DD01098B13D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceHost", "WindowsServiceHost\WindowsServiceHost.csproj", "{354FBE05-8F38-456C-B1EF-96D7737BC37A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A18E9F73-5482-4227-AE5C-2DD01098B13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{354FBE05-8F38-456C-B1EF-96D7737BC37A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{354FBE05-8F38-456C-B1EF-96D7737BC37A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{354FBE05-8F38-456C-B1EF-96D7737BC37A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{354FBE05-8F38-456C-B1EF-96D7737BC37A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

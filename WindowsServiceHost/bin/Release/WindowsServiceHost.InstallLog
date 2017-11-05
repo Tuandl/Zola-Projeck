@@ -1,0 +1,34 @@
+﻿Installing assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe
+Installing service ZolaChatService...
+Creating EventLog source ZolaChatService in log Application...
+Rolling back assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe
+Restoring event log to previous state for source ZolaChatService.
+Uninstalling assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe
+Removing EventLog source ZolaChatService.
+Service ZolaChatService is being removed from the system...
+Service ZolaChatService was successfully removed from the system.
+Installing assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe
+Installing service ZolaChatService...
+Service ZolaChatService has been successfully installed.
+Creating EventLog source ZolaChatService in log Application...
+Committing assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Release\WindowsServiceHost.exe

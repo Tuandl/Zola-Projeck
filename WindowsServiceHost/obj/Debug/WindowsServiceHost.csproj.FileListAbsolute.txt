@@ -1,0 +1,10 @@
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\ServerLibrary.dll
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\ServerLibrary.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\ServerLibrary.dll.config
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\obj\Debug\WindowsServiceHost.csprojResolveAssemblyReference.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\obj\Debug\WindowsServiceHost.csproj.CoreCompileInputs.cache
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\obj\Debug\WindowsServiceHost.exe
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\obj\Debug\WindowsServiceHost.pdb

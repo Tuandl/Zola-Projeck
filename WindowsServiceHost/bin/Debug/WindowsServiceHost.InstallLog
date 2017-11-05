@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe
+Installing service ZolaChatService...
+Service ZolaChatService has been successfully installed.
+Creating EventLog source ZolaChatService in log Application...
+Committing assembly 'C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.InstallLog
+   assemblypath = C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\WindowsServiceHost\bin\Debug\WindowsServiceHost.exe
