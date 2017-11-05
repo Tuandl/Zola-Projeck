@@ -74,6 +74,9 @@
     <Compile Include="Notification\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Notification\NotificationWindowError.xaml.cs">
+      <DependentUpon>NotificationWindowError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
     <Page Include="Notification\NotificationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notification\NotificationWindowError.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Register.xaml">
       <SubType>Designer</SubType>

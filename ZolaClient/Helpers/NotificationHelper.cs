@@ -30,7 +30,8 @@ namespace ZolaClient.Helpers
 
         public static void NotifyError(string message)
         {
-            Notify("Error", message);
+            //Notify("Error", message);
+            new NotificationWindowError(message).Show();
         }
     }
 }

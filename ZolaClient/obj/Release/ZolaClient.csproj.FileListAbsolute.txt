@@ -30,3 +30,7 @@ C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\ZolaClient.csproj.CoreCompileInputs.cache
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\ZolaClient.exe
 C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\ZolaClient.pdb
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\Notification\NotificationWindow.baml
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\Notification\NotificationWindowError.baml
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\Notification\NotificationWindow.g.cs
+C:\Users\TUANDASE62310\Documents\FPT\PRN123\Zola Project\ZolaClient\obj\Release\Notification\NotificationWindowError.g.cs
