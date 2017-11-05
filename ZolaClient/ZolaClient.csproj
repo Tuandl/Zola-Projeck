@@ -35,8 +35,12 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>zola.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -144,7 +148,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ZolaService\ServerLibrary.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -170,6 +176,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="zola.ico" />
     <Resource Include="Resources\img\main-panel-background-2.jpg" />
     <Resource Include="Resources\img\send.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

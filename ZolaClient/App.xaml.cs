@@ -15,13 +15,28 @@ namespace ZolaClient
     public partial class App : Application
     {
         public static object _synObj;
-
+        private static readonly string SERVER_IP_KEY = "serverIp";
         private static ZolaService.ChatServiceClient _proxy = null;
-
         public static ZolaService.ChatServiceClient Proxy { get { return _proxy; } }
 
-        private static string _ip = "localhost";
-        public static string IP { get { return _ip; } set { _ip = value; } }
+        private static string _ip = ConfigurationManager.AppSettings[SERVER_IP_KEY];
+        public static string IP
+        {
+            get { return _ip; }
+            set
+            {
+                _ip = value;
+                UpdateSetting(SERVER_IP_KEY, value);
+            }
+        }
+
+        private static void UpdateSetting(string key, string value)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[key].Value = value;
+            config.Save(ConfigurationSaveMode.Minimal);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
 
         /// <summary>
         /// Create instance to connect to server through IP address
@@ -50,7 +65,7 @@ namespace ZolaClient
         /// </summary>
         public static void Disconnect()
         {
-            if(_proxy != null)
+            if (_proxy != null)
             {
                 switch (_proxy.State)
                 {

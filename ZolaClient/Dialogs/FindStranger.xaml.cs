@@ -85,12 +85,16 @@ namespace ZolaClient.Dialogs
         {
             ZolaService.DataFile avatar = null;
             string username = e.Argument.ToString();
+            e.Result = username;
+            if(AvatarHelper.GetAvatarExtension(username) != null)
+            {
+                return;
+            }
             if (App.Proxy.IsUserHasAvatar(username))
             {
                 avatar = App.Proxy.GetAvatarFile(username);
                 AvatarHelper.SaveAvatar(username, avatar);
             }
-            e.Result = username;
         }
         #endregion
 
