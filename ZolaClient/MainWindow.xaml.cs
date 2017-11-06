@@ -320,6 +320,7 @@ namespace ZolaClient
                 AvatarUrl = AvatarHelper.GetAvatarPath(message.Sender.Username),
                 MessageContent = message.Message
             };
+            if (displayMessage.AvatarUrl == null) displayMessage.AvatarUrl = AvatarHelper.DefaultAvatarPath;
             ListViewItem item = new ListViewItem
             {
                 Content = displayMessage,
@@ -753,6 +754,7 @@ namespace ZolaClient
                 AvatarUrl = AvatarHelper.GetAvatarPath(_curUser.Username),
                 MessageContent = txtMessageToSend.Text
             };
+            if (displayMessage.AvatarUrl == null) displayMessage.AvatarUrl = AvatarHelper.DefaultAvatarPath;
             ListViewItem item = new ListViewItem();
             item.Content = displayMessage;
             item.ContentTemplate = (DataTemplate)this.FindResource("MyMessageTemplate");

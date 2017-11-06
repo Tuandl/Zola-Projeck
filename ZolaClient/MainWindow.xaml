@@ -48,7 +48,7 @@
 
         <DataTemplate x:Key="MyMessageTemplate">
             <DockPanel Margin="3 3">
-                <Image Width="65" Height="50" 
+                <Image Width="50" Height="50" 
                         DockPanel.Dock="Right"
                        VerticalAlignment="Top"
                         Stretch="UniformToFill"
@@ -62,7 +62,7 @@
         </DataTemplate>
         <DataTemplate x:Key="FriendMessageTemplate">
             <DockPanel Margin="3 3">
-                <Image Width="65" Height="50" 
+                <Image Width="50" Height="50" 
                         DockPanel.Dock="Left"
                        VerticalAlignment="Top"
                         Stretch="UniformToFill"
